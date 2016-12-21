@@ -78,7 +78,7 @@ namespace Cache.Persistence
             }
         }
 
-        public static List<Note> getNotesModified(DateTime time) 
+        public static List<Note> getNotesModified(long time) 
         {
             using (var ctx = DataStoreFactory.getRepository())
             {
@@ -87,7 +87,7 @@ namespace Cache.Persistence
             }
         }
 
-        public static List<Notebook> getNoteBookModified(DateTime time)
+        public static List<Notebook> getNoteBookModified(long time)
         {
             using (var ctx = DataStoreFactory.getRepository())
             {

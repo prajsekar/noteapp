@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class User
     {
@@ -12,6 +13,7 @@
         
         public int Id { get; set; }
         public string name { get; set; }
+        [Index(IsUnique = true)]
         public string mail { get; set; }        
 
         public virtual ICollection<Notebook> Notebooks { get; set; }

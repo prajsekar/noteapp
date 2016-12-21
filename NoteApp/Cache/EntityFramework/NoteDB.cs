@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Core;
 using CacheCodeFirst.Persistence;
+using System.Data;
 
 namespace Cache.EntityFramework
 {
@@ -22,6 +23,7 @@ namespace Cache.EntityFramework
         public DbSet<Notebook> Notebooks { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<StoreInfo> storeInfoes { get; set; }
 
         public T add<T>(T obj) where T : class
         {
@@ -31,16 +33,20 @@ namespace Cache.EntityFramework
                 if (obj is IUpdateTimeRequired)
                 {
                     var timeUpdatedEntry = (IUpdateTimeRequired)obj;
-                    var time = DateTime.Now;
+                    var time = DateTime.Now.Ticks;
                     timeUpdatedEntry.updateCreationTime(time);
                     timeUpdatedEntry.updateModifiedTime(time);
                 }
                 result = Set<T>().Add(obj);
                 SaveChanges();
             }
-            catch (EntityException ex)
+            catch (UpdateException ex)
             {
-                throw new NoteCacheException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex);
+                throw new NoteCacheException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DuplicateEntryError");
+            }
+            catch (DataException ex)
+            {
+                throw new NoteCacheException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DataError");
             }
             return result;
         }
@@ -53,7 +59,7 @@ namespace Cache.EntityFramework
                 if (typeof(T) is IUpdateTimeRequired)
                 {
                     var timeUpdatedEntry = (IUpdateTimeRequired)obj;
-                    timeUpdatedEntry.updateModifiedTime(DateTime.Now);                    
+                    timeUpdatedEntry.updateModifiedTime(DateTime.Now.Ticks);                    
                     Entry(obj).Property("updated").IsModified = true;
                 }
                 propertiesToUpdate.ToList().ForEach(p => Entry(obj).Property(p).IsModified = true);
