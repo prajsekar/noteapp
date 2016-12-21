@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\EFStoreContext.cs" />
+    <Compile Include="Entity\IUpdateTimeRequired.cs" />
     <Compile Include="Persistence\DatastoreFactory.cs" />
     <Compile Include="Persistence\IRepository.cs" />
     <Compile Include="Entity\Note.cs" />

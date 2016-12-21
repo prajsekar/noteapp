@@ -77,5 +77,23 @@ namespace Cache.Persistence
                 return result.ToList();
             }
         }
+
+        public static List<Note> getNotesModified(DateTime time) 
+        {
+            using (var ctx = DataStoreFactory.getRepository())
+            {
+                var result = ctx.getDataSet<Note>().Where<Note>(n => (n.updated > time));
+                return result.ToList();
+            }
+        }
+
+        public static List<Notebook> getNoteBookModified(DateTime time)
+        {
+            using (var ctx = DataStoreFactory.getRepository())
+            {
+                var result = ctx.getDataSet<Notebook>().Where<Notebook>(n => (n.updated > time));
+                return result.ToList();
+            }
+        }
     }
 }

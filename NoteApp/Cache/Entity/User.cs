@@ -9,7 +9,7 @@
         {
             this.Notebooks = new HashSet<Notebook>();
         }
-
+        
         public int Id { get; set; }
         public string name { get; set; }
         public string mail { get; set; }        

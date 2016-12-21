@@ -28,6 +28,13 @@ namespace Cache.EntityFramework
             T result = null;
             try
             {
+                if (obj is IUpdateTimeRequired)
+                {
+                    var timeUpdatedEntry = (IUpdateTimeRequired)obj;
+                    var time = DateTime.Now;
+                    timeUpdatedEntry.updateCreationTime(time);
+                    timeUpdatedEntry.updateModifiedTime(time);
+                }
                 result = Set<T>().Add(obj);
                 SaveChanges();
             }
@@ -41,8 +48,14 @@ namespace Cache.EntityFramework
         public void update<T>(T obj, params System.Linq.Expressions.Expression<Func<T, object>>[] propertiesToUpdate) where T : class
         {
             try
-            {
+            {                
                 Set<T>().Attach(obj);
+                if (typeof(T) is IUpdateTimeRequired)
+                {
+                    var timeUpdatedEntry = (IUpdateTimeRequired)obj;
+                    timeUpdatedEntry.updateModifiedTime(DateTime.Now);                    
+                    Entry(obj).Property("updated").IsModified = true;
+                }
                 propertiesToUpdate.ToList().ForEach(p => Entry(obj).Property(p).IsModified = true);
                 SaveChanges();
             }
