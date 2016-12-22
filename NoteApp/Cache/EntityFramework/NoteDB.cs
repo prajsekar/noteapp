@@ -86,5 +86,30 @@ namespace Cache.EntityFramework
         {
             return Set<T>();
         }
+
+        public Task<T> getAsync<T, K>(K id) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> updateAsync<T>(T obj, params System.Linq.Expressions.Expression<Func<T, object>>[] propertiesToUpdate) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> deleteAsync<T>(T obj) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IQueryable<T>> getDatasetAsync<T>() where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> addAsync<T>(T obj) where T : class
+        {
+            throw new NotImplementedException();
+        }
     }
 }

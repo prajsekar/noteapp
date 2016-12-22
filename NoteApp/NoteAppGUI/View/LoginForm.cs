@@ -1,5 +1,5 @@
-﻿using NoteMVC.Presenter;
-using NoteMVC.View;
+﻿using NoteMVP.Presenter;
+using NoteMVP.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

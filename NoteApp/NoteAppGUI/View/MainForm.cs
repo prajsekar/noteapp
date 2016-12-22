@@ -1,4 +1,4 @@
-﻿using NoteMVC.View;
+﻿using NoteMVP.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +17,7 @@ namespace NoteAppGUI
         {
             InitializeComponent();
         }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
+              
 
         private void noteList_SelectedIndexChanged(object sender, EventArgs e)
         {

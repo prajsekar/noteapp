@@ -5,9 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache", "Cache\Cache.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNoteApp", "TestNoteApp\TestNoteApp.csproj", "{438E3D90-DFDC-4DDC-B351-5A51D2DC8396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMVC", "NoteMVC\NoteMVC.csproj", "{2B389B33-BAE1-49A6-9F39-63902895D3C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMVP", "NoteMVC\NoteMVP.csproj", "{2B389B33-BAE1-49A6-9F39-63902895D3C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppGUI", "NoteAppGUI\NoteAppGUI.csproj", "{A2CCA664-5410-45C2-BE4C-EF05B2C18369}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudStore", "CloudStore\CloudStore.csproj", "{15D5539F-84C0-4E77-8020-6C49C31E9637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sync", "Sync\Sync.csproj", "{F9117585-0874-4A8A-A679-E4B425C45F9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,14 @@ Global
 		{A2CCA664-5410-45C2-BE4C-EF05B2C18369}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CCA664-5410-45C2-BE4C-EF05B2C18369}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CCA664-5410-45C2-BE4C-EF05B2C18369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D5539F-84C0-4E77-8020-6C49C31E9637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D5539F-84C0-4E77-8020-6C49C31E9637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D5539F-84C0-4E77-8020-6C49C31E9637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D5539F-84C0-4E77-8020-6C49C31E9637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9117585-0874-4A8A-A679-E4B425C45F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9117585-0874-4A8A-A679-E4B425C45F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9117585-0874-4A8A-A679-E4B425C45F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9117585-0874-4A8A-A679-E4B425C45F9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

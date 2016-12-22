@@ -7,7 +7,7 @@
     <ProjectGuid>{2B389B33-BAE1-49A6-9F39-63902895D3C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoteMVC</RootNamespace>
+    <RootNamespace>NoteMVP</RootNamespace>
     <AssemblyName>NoteMVC</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
