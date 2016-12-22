@@ -46,7 +46,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(383, 70);
+            this.panel1.Size = new System.Drawing.Size(457, 70);
             this.panel1.TabIndex = 7;
             // 
             // label5
@@ -58,7 +58,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(206, 57);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Note App";            
+            this.label5.Text = "Note App";
             // 
             // label1
             // 
@@ -115,7 +115,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(383, 251);
+            this.ClientSize = new System.Drawing.Size(457, 321);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.pwdText);
             this.Controls.Add(this.userNameTxt);

@@ -1,4 +1,4 @@
-﻿namespace NoteAppGUI
+﻿namespace NoteAppGUI.View
 {
     partial class MainForm
     {
@@ -37,8 +37,8 @@
             this.bookCountLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.bookView = new System.Windows.Forms.TreeView();
             this.addBookBtn = new System.Windows.Forms.Button();
+            this.leftPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -50,20 +50,40 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.searchTxtBox = new System.Windows.Forms.TextBox();
             this.addNoteBtn = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.noteList = new System.Windows.Forms.ListView();
+            this.notebookTitleLbl = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.noteCreateTitleLbl = new System.Windows.Forms.Label();
+            this.notesPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.notebookStackPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.createBookConfirmPanel = new System.Windows.Forms.Panel();
+            this.noteCreatedBtn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.newBookNameTxt = new System.Windows.Forms.TextBox();
+            this.noteEntryBox1 = new NoteAppGUI.View.NoteEntryBox();
+            this.noteEntryBox3 = new NoteAppGUI.View.NoteEntryBox();
+            this.noteEntryBox7 = new NoteAppGUI.View.NoteEntryBox();
+            this.noteEntryBox5 = new NoteAppGUI.View.NoteEntryBox();
+            this.noteEntryBox6 = new NoteAppGUI.View.NoteEntryBox();
+            this.noteEntryBox4 = new NoteAppGUI.View.NoteEntryBox();
+            this.noteEntryBox2 = new NoteAppGUI.View.NoteEntryBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.leftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource4)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.notesPanel.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.createBookConfirmPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -152,31 +172,39 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel3.Controls.Add(this.bookView);
             this.panel3.Controls.Add(this.addBookBtn);
+            this.panel3.Controls.Add(this.leftPanel);
             this.panel3.Controls.Add(this.shapeContainer2);
             this.panel3.Location = new System.Drawing.Point(0, 138);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(268, 412);
             this.panel3.TabIndex = 5;
             // 
-            // bookView
-            // 
-            this.bookView.Location = new System.Drawing.Point(7, 6);
-            this.bookView.Name = "bookView";
-            this.bookView.Size = new System.Drawing.Size(253, 337);
-            this.bookView.TabIndex = 10;
-            // 
             // addBookBtn
             // 
+            this.addBookBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.addBookBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.addBookBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBookBtn.Location = new System.Drawing.Point(206, 363);
+            this.addBookBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addBookBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBookBtn.ForeColor = System.Drawing.Color.White;
+            this.addBookBtn.Location = new System.Drawing.Point(114, 363);
             this.addBookBtn.Name = "addBookBtn";
-            this.addBookBtn.Size = new System.Drawing.Size(49, 36);
+            this.addBookBtn.Size = new System.Drawing.Size(124, 36);
             this.addBookBtn.TabIndex = 9;
-            this.addBookBtn.Text = "+";
+            this.addBookBtn.Text = "Add Book";
             this.addBookBtn.UseVisualStyleBackColor = false;
+            this.addBookBtn.Click += new System.EventHandler(this.addBookBtn_Click);
+            // 
+            // leftPanel
+            // 
+            this.leftPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.leftPanel.Controls.Add(this.notebookStackPanel);
+            this.leftPanel.Controls.Add(this.createBookConfirmPanel);
+            this.leftPanel.Location = new System.Drawing.Point(12, 6);
+            this.leftPanel.Name = "leftPanel";
+            this.leftPanel.Size = new System.Drawing.Size(253, 340);
+            this.leftPanel.TabIndex = 10;
             // 
             // shapeContainer2
             // 
@@ -242,40 +270,39 @@
             // 
             // addNoteBtn
             // 
+            this.addNoteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addNoteBtn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.addNoteBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addNoteBtn.Location = new System.Drawing.Point(471, 399);
+            this.addNoteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.addNoteBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNoteBtn.ForeColor = System.Drawing.Color.White;
+            this.addNoteBtn.Location = new System.Drawing.Point(379, 399);
             this.addNoteBtn.Name = "addNoteBtn";
-            this.addNoteBtn.Size = new System.Drawing.Size(49, 36);
+            this.addNoteBtn.Size = new System.Drawing.Size(122, 36);
             this.addNoteBtn.TabIndex = 8;
-            this.addNoteBtn.Text = "+";
+            this.addNoteBtn.Text = "Add Note";
             this.addNoteBtn.UseVisualStyleBackColor = false;
             // 
-            // label8
+            // notebookTitleLbl
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label8.Location = new System.Drawing.Point(11, 4);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 28);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Notes";
-            // 
-            // noteList
-            // 
-            this.noteList.Location = new System.Drawing.Point(7, 42);
-            this.noteList.Name = "noteList";
-            this.noteList.Size = new System.Drawing.Size(513, 337);
-            this.noteList.TabIndex = 12;
-            this.noteList.UseCompatibleStateImageBehavior = false;
+            this.notebookTitleLbl.AutoSize = true;
+            this.notebookTitleLbl.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.notebookTitleLbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notebookTitleLbl.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.notebookTitleLbl.Location = new System.Drawing.Point(11, 4);
+            this.notebookTitleLbl.Name = "notebookTitleLbl";
+            this.notebookTitleLbl.Size = new System.Drawing.Size(118, 28);
+            this.notebookTitleLbl.TabIndex = 9;
+            this.notebookTitleLbl.Text = "Notebook 1";
             // 
             // panel5
             // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel5.Controls.Add(this.noteList);
-            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(this.notesPanel);
+            this.panel5.Controls.Add(this.notebookTitleLbl);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.addNoteBtn);
             this.panel5.Location = new System.Drawing.Point(271, 102);
@@ -283,13 +310,70 @@
             this.panel5.Size = new System.Drawing.Size(528, 448);
             this.panel5.TabIndex = 9;
             // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel7.Controls.Add(this.noteCreateTitleLbl);
+            this.panel7.Location = new System.Drawing.Point(0, 34);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(526, 24);
+            this.panel7.TabIndex = 12;
+            // 
+            // noteCreateTitleLbl
+            // 
+            this.noteCreateTitleLbl.AutoSize = true;
+            this.noteCreateTitleLbl.BackColor = System.Drawing.Color.Transparent;
+            this.noteCreateTitleLbl.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteCreateTitleLbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.noteCreateTitleLbl.Location = new System.Drawing.Point(11, 2);
+            this.noteCreateTitleLbl.Name = "noteCreateTitleLbl";
+            this.noteCreateTitleLbl.Size = new System.Drawing.Size(139, 19);
+            this.noteCreateTitleLbl.TabIndex = 13;
+            this.noteCreateTitleLbl.Text = "10/12/2016 1:26 PM";
+            // 
+            // notesPanel
+            // 
+            this.notesPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.notesPanel.AutoScroll = true;
+            this.notesPanel.BackColor = System.Drawing.Color.White;
+            this.notesPanel.Controls.Add(this.noteEntryBox1);
+            this.notesPanel.Controls.Add(this.noteEntryBox3);
+            this.notesPanel.Controls.Add(this.noteEntryBox7);
+            this.notesPanel.Controls.Add(this.noteEntryBox5);
+            this.notesPanel.Controls.Add(this.noteEntryBox6);
+            this.notesPanel.Controls.Add(this.noteEntryBox4);
+            this.notesPanel.Controls.Add(this.noteEntryBox2);
+            this.notesPanel.Location = new System.Drawing.Point(16, 77);
+            this.notesPanel.Name = "notesPanel";
+            this.notesPanel.Size = new System.Drawing.Size(500, 302);
+            this.notesPanel.TabIndex = 12;
+            // 
             // panel6
             // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel6.Controls.Add(this.label4);
             this.panel6.Location = new System.Drawing.Point(1, 1);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(525, 35);
             this.panel6.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label4.Location = new System.Drawing.Point(499, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(18, 17);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "X";
             // 
             // panel4
             // 
@@ -298,6 +382,108 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(268, 40);
             this.panel4.TabIndex = 8;
+            // 
+            // notebookStackPanel
+            // 
+            this.notebookStackPanel.AutoScroll = true;
+            this.notebookStackPanel.Location = new System.Drawing.Point(3, 3);
+            this.notebookStackPanel.Name = "notebookStackPanel";
+            this.notebookStackPanel.Size = new System.Drawing.Size(245, 216);
+            this.notebookStackPanel.TabIndex = 0;
+            // 
+            // createBookConfirmPanel
+            // 
+            this.createBookConfirmPanel.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.createBookConfirmPanel.Controls.Add(this.noteCreatedBtn);
+            this.createBookConfirmPanel.Controls.Add(this.label6);
+            this.createBookConfirmPanel.Controls.Add(this.newBookNameTxt);
+            this.createBookConfirmPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.createBookConfirmPanel.Location = new System.Drawing.Point(3, 225);
+            this.createBookConfirmPanel.Name = "createBookConfirmPanel";
+            this.createBookConfirmPanel.Size = new System.Drawing.Size(223, 108);
+            this.createBookConfirmPanel.TabIndex = 2;
+            // 
+            // noteCreatedBtn
+            // 
+            this.noteCreatedBtn.BackColor = System.Drawing.Color.Gray;
+            this.noteCreatedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.noteCreatedBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteCreatedBtn.ForeColor = System.Drawing.Color.White;
+            this.noteCreatedBtn.Location = new System.Drawing.Point(138, 68);
+            this.noteCreatedBtn.Name = "noteCreatedBtn";
+            this.noteCreatedBtn.Size = new System.Drawing.Size(75, 32);
+            this.noteCreatedBtn.TabIndex = 11;
+            this.noteCreatedBtn.Text = "Create";
+            this.noteCreatedBtn.UseVisualStyleBackColor = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(5, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(180, 23);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Create New Notebook";
+            // 
+            // newBookNameTxt
+            // 
+            this.newBookNameTxt.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newBookNameTxt.Location = new System.Drawing.Point(7, 31);
+            this.newBookNameTxt.Name = "newBookNameTxt";
+            this.newBookNameTxt.Size = new System.Drawing.Size(206, 31);
+            this.newBookNameTxt.TabIndex = 0;
+            // 
+            // noteEntryBox1
+            // 
+            this.noteEntryBox1.Location = new System.Drawing.Point(3, 3);
+            this.noteEntryBox1.Name = "noteEntryBox1";
+            this.noteEntryBox1.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox1.TabIndex = 0;
+            // 
+            // noteEntryBox3
+            // 
+            this.noteEntryBox3.Location = new System.Drawing.Point(205, 3);
+            this.noteEntryBox3.Name = "noteEntryBox3";
+            this.noteEntryBox3.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox3.TabIndex = 2;
+            // 
+            // noteEntryBox7
+            // 
+            this.noteEntryBox7.Location = new System.Drawing.Point(3, 126);
+            this.noteEntryBox7.Name = "noteEntryBox7";
+            this.noteEntryBox7.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox7.TabIndex = 15;
+            // 
+            // noteEntryBox5
+            // 
+            this.noteEntryBox5.Location = new System.Drawing.Point(205, 126);
+            this.noteEntryBox5.Name = "noteEntryBox5";
+            this.noteEntryBox5.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox5.TabIndex = 13;
+            // 
+            // noteEntryBox6
+            // 
+            this.noteEntryBox6.Location = new System.Drawing.Point(3, 249);
+            this.noteEntryBox6.Name = "noteEntryBox6";
+            this.noteEntryBox6.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox6.TabIndex = 14;
+            // 
+            // noteEntryBox4
+            // 
+            this.noteEntryBox4.Location = new System.Drawing.Point(205, 249);
+            this.noteEntryBox4.Name = "noteEntryBox4";
+            this.noteEntryBox4.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox4.TabIndex = 3;
+            // 
+            // noteEntryBox2
+            // 
+            this.noteEntryBox2.Location = new System.Drawing.Point(3, 372);
+            this.noteEntryBox2.Name = "noteEntryBox2";
+            this.noteEntryBox2.Size = new System.Drawing.Size(196, 117);
+            this.noteEntryBox2.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -315,6 +501,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.leftPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).EndInit();
@@ -323,8 +510,15 @@
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.notesPanel.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.createBookConfirmPanel.ResumeLayout(false);
+            this.createBookConfirmPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -350,13 +544,28 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox searchTxtBox;
         private System.Windows.Forms.Button addBookBtn;
-        private System.Windows.Forms.TreeView bookView;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label notebookTitleLbl;
         private System.Windows.Forms.Button addNoteBtn;
-        private System.Windows.Forms.ListView noteList;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.FlowLayoutPanel notesPanel;
+        private System.Windows.Forms.FlowLayoutPanel leftPanel;
+        private NoteEntryBox noteEntryBox1;
+        private NoteEntryBox noteEntryBox3;
+        private NoteEntryBox noteEntryBox7;
+        private NoteEntryBox noteEntryBox5;
+        private NoteEntryBox noteEntryBox6;
+        private NoteEntryBox noteEntryBox4;
+        private NoteEntryBox noteEntryBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label noteCreateTitleLbl;
+        private System.Windows.Forms.FlowLayoutPanel notebookStackPanel;
+        private System.Windows.Forms.Panel createBookConfirmPanel;
+        private System.Windows.Forms.Button noteCreatedBtn;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox newBookNameTxt;
     }
 }
 

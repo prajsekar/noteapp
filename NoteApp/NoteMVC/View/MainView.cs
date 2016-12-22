@@ -14,8 +14,8 @@ namespace NoteMVP.View
         string bookCount { get; set; }
         void setNotebooks(List<Notebook> books);
         void setNotes(List<Note> notes);
-        event EventHandler<EventArgs> onNoteSelected;
-        event EventHandler<EventArgs> onBookSelected;
+        event EventHandler<Note> onNoteSelected;
+        event EventHandler<Notebook> onBookSelected;
         event EventHandler<EventArgs> onBookCreated;
         event EventHandler<EventArgs> onNoteCreated;
     }

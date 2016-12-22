@@ -60,12 +60,25 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\NotebookControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\NotebookControl.Designer.cs">
+      <DependentUpon>NotebookControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NoteEntryBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\NoteEntryBox.Designer.cs">
+      <DependentUpon>NoteEntryBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\NoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\NoteForm.Designer.cs">
       <DependentUpon>NoteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\NoteObserver.cs" />
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +94,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\NotebookControl.resx">
+      <DependentUpon>NotebookControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NoteEntryBox.resx">
+      <DependentUpon>NoteEntryBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\NoteForm.resx">
       <DependentUpon>NoteForm.cs</DependentUpon>
     </EmbeddedResource>
