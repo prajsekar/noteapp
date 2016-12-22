@@ -102,9 +102,9 @@
       <Project>{fb797622-5288-44fa-a002-ac2fb39b51a2}</Project>
       <Name>Cache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NoteMVC\NoteMVC.csproj">
+    <ProjectReference Include="..\NoteMVC\NoteMVP.csproj">
       <Project>{2b389b33-bae1-49a6-9f39-63902895d3c9}</Project>
-      <Name>NoteMVC</Name>
+      <Name>NoteMVP</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
