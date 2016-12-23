@@ -17,6 +17,7 @@ namespace Cache.Entity
         public long created { get; set; }
         public long updated { get; set; }
         public int UserId { get; set; }
+        public int secondaryId { get; set; }
 
         public virtual ICollection<Note> Notes { get; set; }
         public virtual User User { get; set; }

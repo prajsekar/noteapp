@@ -16,27 +16,41 @@ namespace NoteAppGUI.View
     public partial class NoteEntryBox : UserControl
     {
         private Note _note;
-        private Note note
+        public Note activeNote
         {
             get
             {
-                _note.title = name;
+                _note.title = title;
+                _note.content = content;
                 return _note;
             }
             set {
-                _note = note;
-                name = note.title;              
-                created = new DateTime(note.created);
-                id = note.Id;
+                _note = value;
+                title = value.title;              
+                created = new DateTime(value.created);
+                content = value.content;
+                id = value.Id;
             }
         }
 
-        private string name { 
+        public string title { 
             get {
                 return noteNameLbl.Text;
             }
             set {
                 noteNameLbl.Text = value;
+            }
+        }
+
+        public string content
+        {
+            get
+            {
+                return noteContentLbl.Text;
+            }
+            set
+            {
+                noteContentLbl.Text = value;
             }
         }
 
@@ -64,13 +78,13 @@ namespace NoteAppGUI.View
         public NoteEntryBox(Note note)
         {
             init();
-            this.note = note;
+            this.activeNote = note;
         }
 
         public NoteEntryBox(NoteObserver observer, Note note)
         {
             init();
-            this.note = note;
+            this.activeNote = note;
             this.observer = observer;
         }
 
@@ -86,9 +100,8 @@ namespace NoteAppGUI.View
         {
             if (observer != null)
             {
-                observer.setSelectedNote(sender, note);
-            }
-            MessageBox.Show("Note clicked", "NoteClicked");
+                observer.setSelectedNote(sender, activeNote);
+            }            
         }
     }
 }

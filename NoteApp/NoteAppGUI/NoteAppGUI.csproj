@@ -66,6 +66,12 @@
     <Compile Include="View\NotebookControl.Designer.cs">
       <DependentUpon>NotebookControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\NotebookViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\NotebookViewControl.Designer.cs">
+      <DependentUpon>NotebookViewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\noteEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -77,12 +83,6 @@
     </Compile>
     <Compile Include="View\NoteEntryBox.Designer.cs">
       <DependentUpon>NoteEntryBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\NoteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\NoteForm.Designer.cs">
-      <DependentUpon>NoteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\NoteObserver.cs" />
     <Compile Include="View\TempForm.cs">
@@ -109,14 +109,14 @@
     <EmbeddedResource Include="View\NotebookControl.resx">
       <DependentUpon>NotebookControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\NotebookViewControl.resx">
+      <DependentUpon>NotebookViewControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\noteEditControl.resx">
       <DependentUpon>noteEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\NoteEntryBox.resx">
       <DependentUpon>NoteEntryBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\NoteForm.resx">
-      <DependentUpon>NoteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TempForm.resx">
       <DependentUpon>TempForm.cs</DependentUpon>

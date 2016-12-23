@@ -20,17 +20,16 @@ namespace NoteAppGUI.View
             noteCreatedBtn.Click += new System.EventHandler(this.onAddBook);
             this.newBookNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             removeCreateBookPanel();
-            removeCreateNotePanel();
-            deleteBookBtn.Text = "\uD83D\uDDD1";
+            handleZeroBook();
             addBookBtn.Text = "\u002B";
             addNoteBtn.Text = "\u002B";
-            deleteNoteBtn.Text = "\uD83D\uDDD1";
-            closeNoteBtn.Text = "\u2715";
-            saveNoteBtn.Text = "\uD83D\uDCBE";
             noteCreatedBtn.Text = "\uD83D\uDCBE";
             closeBookCreate.Text = "\u2715";
+            notebookViewControl1.setObserver(this);
+            bookCount = 0;
+            noteCount = 0;
         }
-
+        private Dictionary<String, NotebookControl> bookControlMap = new Dictionary<String, NotebookControl>();
         private void CheckEnterKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
@@ -43,6 +42,7 @@ namespace NoteAppGUI.View
         }
                 
         private bool createBookPanelActive = true;
+        
         private void removeCreateBookPanel() {
             if (createBookPanelActive)
             {
@@ -55,8 +55,7 @@ namespace NoteAppGUI.View
         private void addCreateBookPanel()
         {
             if (!createBookPanelActive)
-            {
-                //leftPanel.Controls.Add(createBookConfirmPanel);
+            {   
                 notebookStackPanel.Height -= createBookConfirmPanel.Height;
                 newBookNameTxt.Focus();
                 createBookConfirmPanel.Visible = true;
@@ -64,63 +63,59 @@ namespace NoteAppGUI.View
             }
         }
 
-        private bool crateNotePanelActive = true;
-        private void removeCreateNotePanel()
+        private void handleZeroBook()
         {
-            if (crateNotePanelActive)
+            if (zeroBook)
             {
-                noteEditPanel.Visible = false;
-                noteListPanel.Height += noteEditPanel.Height;
-                crateNotePanelActive = false;
+                addNoteBtn.Hide();
+                notebookViewControl1.Hide();
+                zeroBook = false;
             }
         }
 
-        private void addCreateNotePanel()
+        private void revertZeroBook()
         {
-            if (!crateNotePanelActive)
+            if (!zeroBook)
             {
-                //leftPanel.Controls.Add(createBookConfirmPanel);
-                noteListPanel.Height -= noteEditPanel.Height;
-                noteContentTxt.Focus();
-                noteEditPanel.Visible = true;
-                crateNotePanelActive = true;
+                addNoteBtn.Show();
+                notebookViewControl1.Show();
+                zeroBook = true;
             }
         }
-        
-        
+
         public string userName
         {
             get
             {
-                throw new NotImplementedException();
+                return userNameLbl.Text;
             }
             set
             {
-                throw new NotImplementedException();
+                userNameLbl.Text = value;
             }
         }
 
-        public string noteCount
+        public int noteCount
         {
             get
             {
-                throw new NotImplementedException();
+                return Int32.Parse(noteCountLbl.Text);
             }
             set
             {
-                throw new NotImplementedException();
+                noteCountLbl.Text = value.ToString();
             }
         }
 
-        public string bookCount
+        public int bookCount
         {
             get
             {
-                throw new NotImplementedException();
+                return Int32.Parse(bookCountLbl.Text);
             }
             set
             {
-                throw new NotImplementedException();
+                bookCountLbl.Text = value.ToString();
             }
         }
 
@@ -129,9 +124,36 @@ namespace NoteAppGUI.View
             clearPanel(notebookStackPanel);            
             foreach (var book in books)
             {
-                notebookStackPanel.Controls.Add(new NotebookControl(this, book));
+                addBookToPanel(book);                
             }
             setSelectedBook(this, books[0]);
+            revertZeroBook();
+        }
+
+       
+
+        private void addBookToPanel(Notebook book, bool update = false)
+        {   
+            NotebookControl control = null;            
+            var valFound = bookControlMap.TryGetValue(book.name, out control);
+            if (!valFound)
+            {
+                control = new NotebookControl(this, book);
+                bookControlMap.Add(book.name, control);
+                bookCount++;
+                noteCount += book.Notes.Count;
+                notebookStackPanel.Controls.Add(control);
+            }
+            if (valFound && !update)
+            {
+                MessageBox.Show("Note already exists, please try unique name", "Error");
+            }
+            else if (update)
+            {
+                noteCount -= control.activeBook.Notes.Count;
+                control.activeBook = book;
+                noteCount += book.Notes.Count;
+            }
         }
 
         private void onAddBook(object sender, EventArgs args)
@@ -140,44 +162,28 @@ namespace NoteAppGUI.View
             var name = newBookNameTxt.Text;
             newBookNameTxt.Text = "";
             removeCreateBookPanel();
-            var book = new Notebook() { Id = 1, name = name, created = ticks, updated = ticks };
-            this.notebookStackPanel.Controls.Add(new NotebookControl(this, book));
+            var book = new Notebook() { Id = -1, name = name, created = ticks, updated = ticks };
+            addBookToPanel(book); 
             if (notebookStackPanel.Controls.Count == 1)
             {
                 setSelectedBook(this, book);
+                revertZeroBook();
             }
-
+            if (this.onBookCreated != null)
+            {
+                this.onBookCreated(this, book);
+            }
         }
-
-        public void setNotes(List<Cache.Entity.Note> notes)
-        {
-            throw new NotImplementedException();
-        }
-
-        public event EventHandler<Note> onNoteSelected;
-
-        public event EventHandler<Notebook> onBookSelected;
-
-        public event EventHandler<EventArgs> onBookCreated;
-
-        public event EventHandler<EventArgs> onNoteCreated;
+        private bool zeroBook = true;
 
         public void setSelectedNote(object sender, Note note)
         {
-            if (this.onNoteSelected != null)
-            {
-                this.onNoteSelected(sender, note);
-            } 
+           //TODO remove this method
         }
 
-
         public void setSelectedBook(object sender, Notebook notebook)
-        {
-            SetBookAreaTitle(notebook);
-            if (this.onBookSelected != null)
-            {
-                this.onBookSelected(sender, notebook);
-            } 
+        {            
+            notebookViewControl1.activeBook = notebook;
         }
 
         private void clearPanel(Panel panel)
@@ -187,29 +193,10 @@ namespace NoteAppGUI.View
             }
             panel.Controls.Clear();
         }
-
-        private void SetBookAreaTitle(Notebook notebook)
-        {
-            this.notebookTitleLbl.Text = notebook.name;
-            this.noteCreateTitleLbl.Text = new DateTime(notebook.created).ToString();
-        }
-
-      
-        private void closeNoteBtn_Click(object sender, EventArgs e)
-        {
-            removeCreateNotePanel();
-        }
-
+        
         private void addNoteBtn_Click_1(object sender, EventArgs e)
         {
-            if (crateNotePanelActive)
-            {
-                removeCreateNotePanel();
-            }
-            else
-            {
-                addCreateNotePanel();
-            }
+            notebookViewControl1.AddNoteClicked();
         }
 
         private void addBookBtn_Click_1(object sender, EventArgs e)
@@ -229,16 +216,75 @@ namespace NoteAppGUI.View
             removeCreateBookPanel();
         }
 
-        private Note editPanelNote
+        public void noteDeletedByUC(Note note)
         {
-            get
+            if (this.onNoteDeleted != null)
             {
-                return new Note() { title = noteTitleTxt.Text };
+                this.onNoteDeleted(this, note);
             }
-            set
-            {
+            noteCount--;
+        }
 
+        public void noteCreatedByUC(Note note)
+        {
+            noteCount++;
+            if (this.onNoteCreated != null)
+            {
+                this.onNoteCreated(this, note);
             }
         }
+
+        public void noteUpdatedByUC(Note note)
+        {   
+            if (this.onNoteUpdated != null)
+            {
+                this.onNoteDeleted(this, note);
+            }
+        }       
+
+        public void bookDeletedByUC(Notebook book)
+        {
+            NotebookControl _bookControl = null;
+            if (bookControlMap.TryGetValue(book.name, out _bookControl))
+            {
+                bookControlMap.Remove(book.name);
+                bookCount--;
+                noteCount -= book.Notes.Count;
+                notebookStackPanel.Controls.Remove(_bookControl);
+                _bookControl.Dispose();
+            }
+            if (bookControlMap.Count == 0)
+            {
+                handleZeroBook();
+            }
+            else
+            {
+                notebookViewControl1.activeBook = bookControlMap[bookControlMap.Keys.ToArray()[0]].activeBook;
+            }
+            if (this.onBookDeleted != null)
+            {
+                this.onBookDeleted(this, book);
+            }
+        }
+
+
+        public void updateNotebook(Notebook book)
+        {
+            addBookToPanel(book, true);
+        }
+
+        public void updateNoteBooks(List<Notebook> books)
+        {
+            foreach (var book in books)
+            {
+                addBookToPanel(book, true);
+            }
+        }
+
+        public event EventHandler<Notebook> onBookDeleted;
+        public event EventHandler<Note> onNoteDeleted;
+        public event EventHandler<Note> onNoteUpdated;
+        public event EventHandler<Notebook> onBookCreated;
+        public event EventHandler<Note> onNoteCreated;
     }
 }

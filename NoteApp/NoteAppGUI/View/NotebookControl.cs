@@ -16,7 +16,7 @@ namespace NoteAppGUI.View
     {
         private Notebook _book;
         private NoteObserver observer;
-        private Notebook book {
+        public Notebook activeBook {
             get
             {
                 return _book;
@@ -41,7 +41,7 @@ namespace NoteAppGUI.View
         public NotebookControl(NoteObserver observer, Notebook book)
         {
             init();
-            this.book = book;
+            this.activeBook = book;
             this.observer = observer;
         }        
 
@@ -57,7 +57,7 @@ namespace NoteAppGUI.View
         {
             if (observer != null)
             {
-                observer.setSelectedBook(sender, this.book);
+                observer.setSelectedBook(sender, this.activeBook);
             }            
         }
     }

@@ -13,7 +13,8 @@ namespace Cache.Entity
         public long updated { get; set; }
         public string content { get; set; }
         public int NotebookId { get; set; }
-
+        public int secondaryId { get; set; } 
+       
         public virtual Notebook Notebook { get; set; }
 
         public void updateCreationTime(long time)
