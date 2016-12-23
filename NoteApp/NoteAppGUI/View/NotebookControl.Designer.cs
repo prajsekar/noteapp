@@ -30,12 +30,14 @@
         {
             this.bookPanel = new System.Windows.Forms.Panel();
             this.bookNameLbl = new System.Windows.Forms.Label();
+            this.noteIconLbl = new System.Windows.Forms.Label();
             this.bookPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // bookPanel
             // 
             this.bookPanel.BackColor = System.Drawing.Color.Teal;
+            this.bookPanel.Controls.Add(this.noteIconLbl);
             this.bookPanel.Controls.Add(this.bookNameLbl);
             this.bookPanel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bookPanel.Location = new System.Drawing.Point(0, 3);
@@ -48,11 +50,22 @@
             this.bookNameLbl.AutoSize = true;
             this.bookNameLbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookNameLbl.ForeColor = System.Drawing.Color.White;
-            this.bookNameLbl.Location = new System.Drawing.Point(3, 9);
+            this.bookNameLbl.Location = new System.Drawing.Point(36, 8);
             this.bookNameLbl.Name = "bookNameLbl";
             this.bookNameLbl.Size = new System.Drawing.Size(118, 28);
             this.bookNameLbl.TabIndex = 2;
             this.bookNameLbl.Text = "Notebook 1";
+            // 
+            // noteIconLbl
+            // 
+            this.noteIconLbl.AutoSize = true;
+            this.noteIconLbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteIconLbl.ForeColor = System.Drawing.Color.White;
+            this.noteIconLbl.Location = new System.Drawing.Point(1, 5);
+            this.noteIconLbl.Name = "noteIconLbl";
+            this.noteIconLbl.Size = new System.Drawing.Size(37, 34);
+            this.noteIconLbl.TabIndex = 3;
+            this.noteIconLbl.Text = "X";
             // 
             // NotebookControl
             // 
@@ -71,5 +84,6 @@
 
         private System.Windows.Forms.Panel bookPanel;
         private System.Windows.Forms.Label bookNameLbl;
+        private System.Windows.Forms.Label noteIconLbl;
     }
 }

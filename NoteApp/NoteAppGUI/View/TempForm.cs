@@ -1,5 +1,4 @@
-﻿using Cache.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,17 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NoteAppGUI.View
+namespace NoteApp.View
 {
-    public partial class NoteForm : Form
+    public partial class TempForm : Form
     {
-        public NoteForm()
+        public TempForm()
         {
             InitializeComponent();
         }
-
-       
-
-      
     }
 }

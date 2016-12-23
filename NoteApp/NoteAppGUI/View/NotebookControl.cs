@@ -50,6 +50,7 @@ namespace NoteAppGUI.View
             InitializeComponent();
             bookPanel.Click += new System.EventHandler(onPanelClick);
             bookNameLbl.Click += new System.EventHandler(onPanelClick);
+            noteIconLbl.Text = "\uD83D\uDDD2";
         }
 
         private void onPanelClick(object sender, EventArgs e)

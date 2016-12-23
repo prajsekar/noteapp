@@ -66,6 +66,12 @@
     <Compile Include="View\NotebookControl.Designer.cs">
       <DependentUpon>NotebookControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\noteEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\noteEditControl.Designer.cs">
+      <DependentUpon>noteEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\NoteEntryBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +85,12 @@
       <DependentUpon>NoteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\NoteObserver.cs" />
+    <Compile Include="View\TempForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TempForm.Designer.cs">
+      <DependentUpon>TempForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,11 +109,17 @@
     <EmbeddedResource Include="View\NotebookControl.resx">
       <DependentUpon>NotebookControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\noteEditControl.resx">
+      <DependentUpon>noteEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\NoteEntryBox.resx">
       <DependentUpon>NoteEntryBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\NoteForm.resx">
       <DependentUpon>NoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TempForm.resx">
+      <DependentUpon>TempForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

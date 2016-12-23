@@ -19,7 +19,16 @@ namespace NoteAppGUI.View
             InitializeComponent();
             noteCreatedBtn.Click += new System.EventHandler(this.onAddBook);
             this.newBookNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
-            removeCreatePanel();
+            removeCreateBookPanel();
+            removeCreateNotePanel();
+            deleteBookBtn.Text = "\uD83D\uDDD1";
+            addBookBtn.Text = "\u002B";
+            addNoteBtn.Text = "\u002B";
+            deleteNoteBtn.Text = "\uD83D\uDDD1";
+            closeNoteBtn.Text = "\u2715";
+            saveNoteBtn.Text = "\uD83D\uDCBE";
+            noteCreatedBtn.Text = "\uD83D\uDCBE";
+            closeBookCreate.Text = "\u2715";
         }
 
         private void CheckEnterKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -32,26 +41,52 @@ namespace NoteAppGUI.View
                 }
             }
         }
-        private bool createPanelActive = true;
-        private void removeCreatePanel() {
-            if (createPanelActive)
+                
+        private bool createBookPanelActive = true;
+        private void removeCreateBookPanel() {
+            if (createBookPanelActive)
             {
-                leftPanel.Controls.RemoveAt(1);
+                createBookConfirmPanel.Visible = false;
                 notebookStackPanel.Height += createBookConfirmPanel.Height;
-                createPanelActive = false;
+                createBookPanelActive = false;
             }
         }
 
-        private void addCreatePanel()
+        private void addCreateBookPanel()
         {
-            if (!createPanelActive)
+            if (!createBookPanelActive)
             {
-                leftPanel.Controls.Add(createBookConfirmPanel);
+                //leftPanel.Controls.Add(createBookConfirmPanel);
                 notebookStackPanel.Height -= createBookConfirmPanel.Height;
                 newBookNameTxt.Focus();
-                createPanelActive = true;
+                createBookConfirmPanel.Visible = true;
+                createBookPanelActive = true;
             }
         }
+
+        private bool crateNotePanelActive = true;
+        private void removeCreateNotePanel()
+        {
+            if (crateNotePanelActive)
+            {
+                noteEditPanel.Visible = false;
+                noteListPanel.Height += noteEditPanel.Height;
+                crateNotePanelActive = false;
+            }
+        }
+
+        private void addCreateNotePanel()
+        {
+            if (!crateNotePanelActive)
+            {
+                //leftPanel.Controls.Add(createBookConfirmPanel);
+                noteListPanel.Height -= noteEditPanel.Height;
+                noteContentTxt.Focus();
+                noteEditPanel.Visible = true;
+                crateNotePanelActive = true;
+            }
+        }
+        
         
         public string userName
         {
@@ -104,8 +139,14 @@ namespace NoteAppGUI.View
             var ticks = DateTime.Now.Ticks;
             var name = newBookNameTxt.Text;
             newBookNameTxt.Text = "";
-            removeCreatePanel();
-            this.notebookStackPanel.Controls.Add(new NotebookControl(this, new Notebook() { Id = 1, name = name, created = ticks, updated = ticks }));            
+            removeCreateBookPanel();
+            var book = new Notebook() { Id = 1, name = name, created = ticks, updated = ticks };
+            this.notebookStackPanel.Controls.Add(new NotebookControl(this, book));
+            if (notebookStackPanel.Controls.Count == 1)
+            {
+                setSelectedBook(this, book);
+            }
+
         }
 
         public void setNotes(List<Cache.Entity.Note> notes)
@@ -153,9 +194,51 @@ namespace NoteAppGUI.View
             this.noteCreateTitleLbl.Text = new DateTime(notebook.created).ToString();
         }
 
-        private void addBookBtn_Click(object sender, EventArgs e)
+      
+        private void closeNoteBtn_Click(object sender, EventArgs e)
         {
-            addCreatePanel();
+            removeCreateNotePanel();
+        }
+
+        private void addNoteBtn_Click_1(object sender, EventArgs e)
+        {
+            if (crateNotePanelActive)
+            {
+                removeCreateNotePanel();
+            }
+            else
+            {
+                addCreateNotePanel();
+            }
+        }
+
+        private void addBookBtn_Click_1(object sender, EventArgs e)
+        {
+            if(!createBookPanelActive) 
+            {
+                addCreateBookPanel();
+            }
+            else 
+            {
+                removeCreateBookPanel();
+            }
+        }
+
+        private void closeBookCreate_Click(object sender, EventArgs e)
+        {
+            removeCreateBookPanel();
+        }
+
+        private Note editPanelNote
+        {
+            get
+            {
+                return new Note() { title = noteTitleTxt.Text };
+            }
+            set
+            {
+
+            }
         }
     }
 }
