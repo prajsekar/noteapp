@@ -11,13 +11,14 @@ namespace Cache
 {
     public class LocalDbBoostrap
     {
-        public static bool init()
+        public static bool registerDataStore(String connectionString = null, String key = null)
         {
             var result = true;
             try
             {
-                DataStoreFactory.Instance.register("localDB", new EFStoreContext());
-                DataStoreFactory.Instance.Key = "localDB";
+                key = key ?? "localDB";
+                var storeFactory = new EFStoreContext(connectionString);
+                DataStoreFactory.Instance.register(key, storeFactory);
             }
             catch (Exception ex)
             {
@@ -25,5 +26,6 @@ namespace Cache
             }
             return result;
         }
+
     }
 }

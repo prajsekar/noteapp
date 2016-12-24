@@ -5,16 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Appnote.Core.Persistence;
+using System.IO;
 
 namespace Cache.EntityFramework
 {
     class EFStoreContext : IDataStoreFactory
     {
-        public static String connectionString { get; set; }
+        public String connectionString { get; set;}
 
-        static EFStoreContext()
+        public EFStoreContext()
         {
-            connectionString = @"data source= C:\Users\rajasekarp\AppData\Roaming\notestore.sdf";
+            init(null);
+        }
+
+        public EFStoreContext(String connectionString) 
+        {  
+            init(connectionString);
+        }
+
+        private void init(String connectionString) 
+        {
+            if (String.IsNullOrEmpty(connectionString))
+            {
+                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                this.connectionString = appDataPath + @"\notestore.sdf";
+            }
+            else
+            {
+                this.connectionString = connectionString;
+            }
         }
 
         public IRepository getRepository()

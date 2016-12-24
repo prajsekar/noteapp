@@ -30,8 +30,9 @@ namespace Appnote.Core.Persistence
             }
         }
 
-        public IRepository getRepository(String key)
-        {
+        //Returns repository impl
+        public IRepository getRepository(String key, object args)
+        {            
             IRepository result = null;
             if (!String.IsNullOrEmpty(Key))
             {
@@ -49,9 +50,9 @@ namespace Appnote.Core.Persistence
             return result;
         }
 
-        public IRepository getRepository()
-        {
-            return getRepository(Key);
+        public IRepository getRepository(object args = null)
+        {   
+            return getRepository(Key, args);
         }
 
         public static DataStoreFactory Instance { get; private set; }

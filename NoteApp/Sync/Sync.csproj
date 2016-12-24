@@ -45,6 +45,12 @@
     <Compile Include="ISyncListener.cs" />
     <Compile Include="ISyncProcessor.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NoteAppCore\NoteAppCore.csproj">
+      <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
+      <Name>NoteAppCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

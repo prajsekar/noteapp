@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoteApp.Core.Model.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ namespace Sync
 {
     class DataStoreSyncProcessor : ISyncProcessor
     {
-        public DataStoreSyncProcessor()
+        private INoteAppService service;
+        public DataStoreSyncProcessor(INoteAppService service)
         {
-
+            this.service = service;
         }
 
         public void Process(SyncEvent syncEvent)

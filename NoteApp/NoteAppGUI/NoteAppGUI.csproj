@@ -7,8 +7,8 @@
     <ProjectGuid>{A2CCA664-5410-45C2-BE4C-EF05B2C18369}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoteApp</RootNamespace>
-    <AssemblyName>NoteApp</AssemblyName>
+    <RootNamespace>NoteApp.WinUI</RootNamespace>
+    <AssemblyName>noteapp.winui</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -105,6 +105,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\NotebookControl.resx">
       <DependentUpon>NotebookControl.cs</DependentUpon>
