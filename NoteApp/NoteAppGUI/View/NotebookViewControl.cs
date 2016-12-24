@@ -32,6 +32,10 @@ namespace NoteApp.View
         {
             get
             {
+                if (_currentNote == null)
+                {
+                    return _currentNote;
+                }
                 _currentNote.Notes = new List<Note>();
                 for (var i = 0; i < noteListPanel.Controls.Count; i++)
                 {
@@ -42,6 +46,10 @@ namespace NoteApp.View
             }
             set
             {
+                if (value == null)
+                {
+                    return;
+                }
                 if (_currentNote != null && _currentNote.name == value.name)
                 {
                     return;

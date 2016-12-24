@@ -56,11 +56,8 @@
             this.bookContentPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.searchBtn = new System.Windows.Forms.Button();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.noNotesMessage = new System.Windows.Forms.Label();
+            this.addBookTip = new System.Windows.Forms.ToolTip(this.components);
             this.notebookViewControl1 = new NoteApp.View.NotebookViewControl();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -70,10 +67,6 @@
             this.panel5.SuspendLayout();
             this.bookContentPanel.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -183,6 +176,7 @@
             this.addBookBtn.Size = new System.Drawing.Size(57, 51);
             this.addBookBtn.TabIndex = 11;
             this.addBookBtn.Text = "Add Book";
+            this.addBookTip.SetToolTip(this.addBookBtn, "Add notebook");
             this.addBookBtn.UseVisualStyleBackColor = false;
             this.addBookBtn.Click += new System.EventHandler(this.addBookBtn_Click_1);
             // 
@@ -363,6 +357,7 @@
             this.addNoteBtn.Size = new System.Drawing.Size(57, 51);
             this.addNoteBtn.TabIndex = 12;
             this.addNoteBtn.Text = "Add Book";
+            this.addBookTip.SetToolTip(this.addNoteBtn, "Add new note");
             this.addNoteBtn.UseVisualStyleBackColor = false;
             this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click_1);
             // 
@@ -401,6 +396,7 @@
             this.searchBtn.Size = new System.Drawing.Size(32, 32);
             this.searchBtn.TabIndex = 29;
             this.searchBtn.Text = "X";
+            this.addBookTip.SetToolTip(this.searchBtn, "Search notes");
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
@@ -415,13 +411,22 @@
             this.noNotesMessage.TabIndex = 15;
             this.noNotesMessage.Text = "Get organised! start taking notes...";
             // 
+            // addBookTip
+            // 
+            this.addBookTip.AutomaticDelay = 50;
+            this.addBookTip.AutoPopDelay = 5000;
+            this.addBookTip.InitialDelay = 50;
+            this.addBookTip.ReshowDelay = 10;
+            // 
             // notebookViewControl1
             // 
+            this.notebookViewControl1.activeBook = null;
             this.notebookViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.notebookViewControl1.Location = new System.Drawing.Point(0, 0);
             this.notebookViewControl1.Name = "notebookViewControl1";
             this.notebookViewControl1.Size = new System.Drawing.Size(524, 382);
             this.notebookViewControl1.TabIndex = 16;
+            this.addBookTip.SetToolTip(this.notebookViewControl1, "Delete book");
             // 
             // MainForm
             // 
@@ -449,10 +454,6 @@
             this.bookContentPanel.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -469,12 +470,8 @@
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
         private System.Windows.Forms.Label syncStatusLbl;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label userNameLbl;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.BindingSource bindingSource2;
-        private System.Windows.Forms.BindingSource bindingSource3;
-        private System.Windows.Forms.BindingSource bindingSource4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox searchTxtBox;
         private System.Windows.Forms.Panel panel5;
@@ -492,6 +489,7 @@
         private System.Windows.Forms.Button searchBtn;
         private NoteApp.View.NotebookViewControl notebookViewControl1;
         private System.Windows.Forms.Label noNotesMessage;
+        private System.Windows.Forms.ToolTip addBookTip;
     }
 }
 

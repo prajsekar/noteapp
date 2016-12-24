@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.bookContentPanel = new System.Windows.Forms.Panel();
             this.noteListPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -45,6 +46,7 @@
             this.deleteBookBtn = new System.Windows.Forms.Button();
             this.notebookTitleLbl = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.contentPanel.SuspendLayout();
             this.bookContentPanel.SuspendLayout();
             this.noteEditPanel.SuspendLayout();
@@ -265,6 +267,7 @@
             this.deleteBookBtn.Size = new System.Drawing.Size(55, 57);
             this.deleteBookBtn.TabIndex = 22;
             this.deleteBookBtn.Text = "X";
+            this.toolTip1.SetToolTip(this.deleteBookBtn, "Delete book");
             this.deleteBookBtn.UseVisualStyleBackColor = false;
             this.deleteBookBtn.Click += new System.EventHandler(this.deleteBookBtn_Click);
             // 
@@ -289,6 +292,13 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(682, 35);
             this.panel6.TabIndex = 11;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 50;
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 50;
+            this.toolTip1.ReshowDelay = 10;
             // 
             // NotebookViewControl
             // 
@@ -327,5 +337,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label hiddenIdLbl;
         private System.Windows.Forms.Label bookNameLbl;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
