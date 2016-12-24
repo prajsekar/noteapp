@@ -1,4 +1,4 @@
-﻿using Cache.Entity;
+﻿using Appnote.Core.Model.Entity;
 using NoteMVP.View;
 using System;
 using System.Collections.Generic;

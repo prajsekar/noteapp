@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using NoteApp.Application;
 
 namespace NoteApp
 {
@@ -14,9 +14,10 @@ namespace NoteApp
     {
         static void Main(string[] args)
         {
+            NoteApplication.bootstrapWinClient();
             AppDomain.CurrentDomain.SetData("TestDir", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
             NoteService noteService = new NoteService();
-            noteService.addUser(new User() { mail = "raj", name = "rajasekarnew" });            
+            noteService.addUser(new User() { mail = "raj", name = "rajasekarnew" });
 
             using (IRepository repository = Appnote.Core.Persistence.DataStoreFactory.Instance.getRepository())
             {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cache.Entity
+namespace Appnote.Core.Model.Entity 
 {
     public partial class StoreInfo
     {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9117585-0874-4A8A-A679-E4B425C45F9B}</ProjectGuid>
+    <ProjectGuid>{5CAAD627-0325-476E-8DF4-7F9172D2499B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sync</RootNamespace>
-    <AssemblyName>Sync</AssemblyName>
+    <RootNamespace>NoteAppCore</RootNamespace>
+    <AssemblyName>NoteAppCore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,12 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStoreSyncProcessor.cs" />
+    <Compile Include="Model\IUpdateTimeRequired.cs" />
+    <Compile Include="Model\Entity\Note.cs" />
+    <Compile Include="Model\Entity\Notebook.cs" />
+    <Compile Include="Model\Entity\StoreInfo.cs" />
+    <Compile Include="Model\Entity\User.cs" />
+    <Compile Include="Model\service\INoteAppService.cs" />
+    <Compile Include="Model\service\NoteService.cs" />
+    <Compile Include="persistence\DatastoreFactory.cs" />
+    <Compile Include="persistence\IDataStoreFactory.cs" />
+    <Compile Include="persistence\IRepository.cs" />
+    <Compile Include="persistence\IRepositoryAsync.cs" />
+    <Compile Include="persistence\IStoreContext.cs" />
+    <Compile Include="persistence\NoteAppDataException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SyncEvent.cs" />
-    <Compile Include="ISyncListener.cs" />
-    <Compile Include="ISyncProcessor.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

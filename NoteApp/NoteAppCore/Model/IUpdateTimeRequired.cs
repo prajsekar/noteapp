@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cache.Entity
+namespace Appnote.Core.Model
 {
-    interface IUpdateTimeRequired
+    public interface IUpdateTimeRequired
     {
         void updateCreationTime(long time);
         void updateModifiedTime(long time);

@@ -1,21 +1,26 @@
-namespace Cache.Entity
+namespace Appnote.Core.Model.Entity 
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Note : IUpdateTimeRequired
+    public partial class Notebook : IUpdateTimeRequired
     {
+        public Notebook()
+        {
+            this.Notes = new HashSet<Note>();
+        }
+
         public int Id { get; set; }
         [Index(IsUnique = true)]
-        public string title { get; set; }
+        public string name { get; set; }
         public long created { get; set; }
         public long updated { get; set; }
-        public string content { get; set; }
-        public int NotebookId { get; set; }
-        public int secondaryId { get; set; } 
-       
-        public virtual Notebook Notebook { get; set; }
+        public int UserId { get; set; }
+        public int secondaryId { get; set; }
+
+        public virtual ICollection<Note> Notes { get; set; }
+        public virtual User User { get; set; }
 
         public void updateCreationTime(long time)
         {

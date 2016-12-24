@@ -135,9 +135,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cache\Cache.csproj">
-      <Project>{fb797622-5288-44fa-a002-ac2fb39b51a2}</Project>
-      <Name>Cache</Name>
+    <ProjectReference Include="..\NoteAppCore\NoteAppCore.csproj">
+      <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
+      <Name>NoteAppCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NoteApp\NoteApp.csproj">
+      <Project>{08bd69fd-c36c-479e-a1bd-bb5ac0d30b1a}</Project>
+      <Name>NoteApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\NoteMVC\NoteMVP.csproj">
       <Project>{2b389b33-bae1-49a6-9f39-63902895d3c9}</Project>

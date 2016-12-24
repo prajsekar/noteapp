@@ -1,14 +1,14 @@
-﻿using Cache.Persistence;
-using Cache.EntityFramework;
+﻿using Cache.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Appnote.Core.Persistence;
 
-namespace CacheCodeFirst.EntityFramework
+namespace Cache.EntityFramework
 {
-    class EFStoreContext : IStoreContext
+    class EFStoreContext : IDataStoreFactory
     {
         public static String connectionString { get; set; }
 
@@ -17,7 +17,7 @@ namespace CacheCodeFirst.EntityFramework
             connectionString = @"data source= C:\Users\rajasekarp\AppData\Roaming\notestore.sdf";
         }
 
-        public Cache.Persistence.IRepository getRepository()
+        public IRepository getRepository()
         {
             return new NoteDB(connectionString);   
         }

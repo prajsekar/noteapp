@@ -1,14 +1,14 @@
-﻿using Cache.Entity;
-using Cache.Persistence;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Core;
-using CacheCodeFirst.Persistence;
 using System.Data;
+using Appnote.Core.Persistence;
+using Appnote.Core.Model.Entity;
+using Appnote.Core.Model;
 
 namespace Cache.EntityFramework
 {
@@ -42,11 +42,11 @@ namespace Cache.EntityFramework
             }
             catch (UpdateException ex)
             {
-                throw new NoteCacheException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DuplicateEntryError");
+                throw new NoteAppDataException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DuplicateEntryError");
             }
             catch (DataException ex)
             {
-                throw new NoteCacheException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DataError");
+                throw new NoteAppDataException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DataError");
             }
             return result;
         }
@@ -67,7 +67,7 @@ namespace Cache.EntityFramework
             }
             catch (EntityException ex)
             {
-                throw new NoteCacheException(String.Format("Error updating {0} entry", typeof(T).FullName), ex);
+                throw new NoteAppDataException(String.Format("Error updating {0} entry", typeof(T).FullName), ex);
             }
         }
 

@@ -1,13 +1,12 @@
-﻿using Cache.Persistence;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cache.Persistence
+namespace Appnote.Core.Persistence 
 {
-    interface IStoreContext
+    public interface IDataStoreFactory
     {
         IRepository getRepository();
     }

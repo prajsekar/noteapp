@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Cache.Entity;
+using Appnote.Core.Model.Entity;
 using NoteAppGUI.View;
 
 namespace NoteAppGUI.View

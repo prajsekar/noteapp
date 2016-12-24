@@ -1,4 +1,4 @@
-﻿namespace Cache.Entity
+﻿namespace Appnote.Core.Model.Entity 
 {
     using System;
     using System.Collections.Generic;

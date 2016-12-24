@@ -51,9 +51,9 @@
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cache\Cache.csproj">
-      <Project>{fb797622-5288-44fa-a002-ac2fb39b51a2}</Project>
-      <Name>Cache</Name>
+    <ProjectReference Include="..\NoteAppCore\NoteAppCore.csproj">
+      <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
+      <Name>NoteAppCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

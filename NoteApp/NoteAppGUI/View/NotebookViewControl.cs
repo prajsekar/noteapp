@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteAppGUI.View;
-using Cache.Entity;
+using Appnote.Core.Model.Entity;
 
 namespace NoteApp.View
 {
@@ -170,13 +170,13 @@ namespace NoteApp.View
             }
         }
 
-        public void setSelectedNote(object sender, Cache.Entity.Note note)
+        public void setSelectedNote(object sender, Note note)
         {
             noteView = note;
         }
 
         
-        public void setSelectedBook(object sender, Cache.Entity.Notebook notebook)
+        public void setSelectedBook(object sender, Notebook notebook)
         {
             throw new NotImplementedException();
         }
