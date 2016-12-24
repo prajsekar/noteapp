@@ -40,7 +40,7 @@
             this.addBookBtn = new System.Windows.Forms.Button();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.createBookConfirmPanel = new System.Windows.Forms.Panel();
-            this.noteCreatedBtn = new System.Windows.Forms.Button();
+            this.bookCreatedBtn = new System.Windows.Forms.Button();
             this.closeBookCreate = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.newBookNameTxt = new System.Windows.Forms.TextBox();
@@ -55,6 +55,7 @@
             this.addNoteBtn = new System.Windows.Forms.Button();
             this.bookContentPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
@@ -93,12 +94,12 @@
             // 
             this.syncStatusLbl.AutoSize = true;
             this.syncStatusLbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.syncStatusLbl.ForeColor = System.Drawing.Color.White;
+            this.syncStatusLbl.ForeColor = System.Drawing.Color.YellowGreen;
             this.syncStatusLbl.Location = new System.Drawing.Point(121, 59);
             this.syncStatusLbl.Name = "syncStatusLbl";
-            this.syncStatusLbl.Size = new System.Drawing.Size(124, 28);
+            this.syncStatusLbl.Size = new System.Drawing.Size(97, 28);
             this.syncStatusLbl.TabIndex = 5;
-            this.syncStatusLbl.Text = "In Progress....";
+            this.syncStatusLbl.Text = "Complete";
             // 
             // label3
             // 
@@ -200,7 +201,7 @@
             // 
             this.createBookConfirmPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.createBookConfirmPanel.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.createBookConfirmPanel.Controls.Add(this.noteCreatedBtn);
+            this.createBookConfirmPanel.Controls.Add(this.bookCreatedBtn);
             this.createBookConfirmPanel.Controls.Add(this.closeBookCreate);
             this.createBookConfirmPanel.Controls.Add(this.label6);
             this.createBookConfirmPanel.Controls.Add(this.newBookNameTxt);
@@ -210,20 +211,20 @@
             this.createBookConfirmPanel.Size = new System.Drawing.Size(223, 95);
             this.createBookConfirmPanel.TabIndex = 4;
             // 
-            // noteCreatedBtn
+            // bookCreatedBtn
             // 
-            this.noteCreatedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.noteCreatedBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.noteCreatedBtn.FlatAppearance.BorderSize = 0;
-            this.noteCreatedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.noteCreatedBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noteCreatedBtn.ForeColor = System.Drawing.Color.White;
-            this.noteCreatedBtn.Location = new System.Drawing.Point(150, 3);
-            this.noteCreatedBtn.Name = "noteCreatedBtn";
-            this.noteCreatedBtn.Size = new System.Drawing.Size(34, 38);
-            this.noteCreatedBtn.TabIndex = 28;
-            this.noteCreatedBtn.Text = "X";
-            this.noteCreatedBtn.UseVisualStyleBackColor = false;
+            this.bookCreatedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bookCreatedBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bookCreatedBtn.FlatAppearance.BorderSize = 0;
+            this.bookCreatedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bookCreatedBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bookCreatedBtn.ForeColor = System.Drawing.Color.White;
+            this.bookCreatedBtn.Location = new System.Drawing.Point(150, 3);
+            this.bookCreatedBtn.Name = "bookCreatedBtn";
+            this.bookCreatedBtn.Size = new System.Drawing.Size(34, 38);
+            this.bookCreatedBtn.TabIndex = 28;
+            this.bookCreatedBtn.Text = "X";
+            this.bookCreatedBtn.UseVisualStyleBackColor = false;
             // 
             // closeBookCreate
             // 
@@ -302,7 +303,7 @@
             this.userNameLbl.Name = "userNameLbl";
             this.userNameLbl.Size = new System.Drawing.Size(126, 28);
             this.userNameLbl.TabIndex = 6;
-            this.userNameLbl.Text = "User Name";
+            this.userNameLbl.Text = "John Smith";
             // 
             // label5
             // 
@@ -332,7 +333,7 @@
             this.searchTxtBox.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchTxtBox.Location = new System.Drawing.Point(3, 4);
             this.searchTxtBox.Name = "searchTxtBox";
-            this.searchTxtBox.Size = new System.Drawing.Size(262, 32);
+            this.searchTxtBox.Size = new System.Drawing.Size(230, 32);
             this.searchTxtBox.TabIndex = 10;
             // 
             // panel5
@@ -378,11 +379,28 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.searchBtn);
             this.panel4.Controls.Add(this.searchTxtBox);
             this.panel4.Location = new System.Drawing.Point(0, 98);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(268, 40);
             this.panel4.TabIndex = 8;
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.searchBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.searchBtn.FlatAppearance.BorderSize = 0;
+            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.Location = new System.Drawing.Point(233, 4);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(32, 32);
+            this.searchBtn.TabIndex = 29;
+            this.searchBtn.Text = "X";
+            this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // notebookViewControl1
             // 
@@ -455,9 +473,10 @@
         private System.Windows.Forms.Panel bookContentPanel;
         private System.Windows.Forms.Button addBookBtn;
         private System.Windows.Forms.Button addNoteBtn;
-        private System.Windows.Forms.Button noteCreatedBtn;
+        private System.Windows.Forms.Button bookCreatedBtn;
         private System.Windows.Forms.Button closeBookCreate;
         private NoteApp.View.NotebookViewControl notebookViewControl1;
+        private System.Windows.Forms.Button searchBtn;
     }
 }
 
