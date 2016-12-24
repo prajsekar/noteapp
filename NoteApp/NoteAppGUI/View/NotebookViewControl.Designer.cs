@@ -32,6 +32,7 @@
             this.bookContentPanel = new System.Windows.Forms.Panel();
             this.noteListPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.noteEditPanel = new System.Windows.Forms.Panel();
+            this.bookNameLbl = new System.Windows.Forms.Label();
             this.hiddenIdLbl = new System.Windows.Forms.Label();
             this.saveNoteBtn = new System.Windows.Forms.Button();
             this.deleteNoteBtn = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.deleteBookBtn = new System.Windows.Forms.Button();
             this.notebookTitleLbl = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.bookNameLbl = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             this.bookContentPanel.SuspendLayout();
             this.noteEditPanel.SuspendLayout();
@@ -57,9 +57,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.contentPanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.contentPanel.Controls.Add(this.deleteBookBtn);
             this.contentPanel.Controls.Add(this.bookContentPanel);
             this.contentPanel.Controls.Add(this.panel7);
-            this.contentPanel.Controls.Add(this.deleteBookBtn);
             this.contentPanel.Controls.Add(this.notebookTitleLbl);
             this.contentPanel.Controls.Add(this.panel6);
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
@@ -109,6 +109,20 @@
             this.noteEditPanel.Name = "noteEditPanel";
             this.noteEditPanel.Size = new System.Drawing.Size(676, 283);
             this.noteEditPanel.TabIndex = 6;
+            // 
+            // bookNameLbl
+            // 
+            this.bookNameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bookNameLbl.AutoSize = true;
+            this.bookNameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.bookNameLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bookNameLbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bookNameLbl.ForeColor = System.Drawing.Color.White;
+            this.bookNameLbl.Location = new System.Drawing.Point(9, 59);
+            this.bookNameLbl.Name = "bookNameLbl";
+            this.bookNameLbl.Size = new System.Drawing.Size(86, 23);
+            this.bookNameLbl.TabIndex = 26;
+            this.bookNameLbl.Text = "Notebook";
             // 
             // hiddenIdLbl
             // 
@@ -223,7 +237,7 @@
             this.panel7.Controls.Add(this.noteCreateTitleLbl);
             this.panel7.Location = new System.Drawing.Point(0, 34);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(630, 24);
+            this.panel7.Size = new System.Drawing.Size(683, 24);
             this.panel7.TabIndex = 12;
             // 
             // noteCreateTitleLbl
@@ -273,22 +287,8 @@
             this.panel6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel6.Location = new System.Drawing.Point(1, 1);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(629, 35);
+            this.panel6.Size = new System.Drawing.Size(682, 35);
             this.panel6.TabIndex = 11;
-            // 
-            // bookNameLbl
-            // 
-            this.bookNameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.bookNameLbl.AutoSize = true;
-            this.bookNameLbl.BackColor = System.Drawing.Color.Transparent;
-            this.bookNameLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bookNameLbl.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bookNameLbl.ForeColor = System.Drawing.Color.White;
-            this.bookNameLbl.Location = new System.Drawing.Point(9, 59);
-            this.bookNameLbl.Name = "bookNameLbl";
-            this.bookNameLbl.Size = new System.Drawing.Size(86, 23);
-            this.bookNameLbl.TabIndex = 26;
-            this.bookNameLbl.Text = "Notebook";
             // 
             // NotebookViewControl
             // 

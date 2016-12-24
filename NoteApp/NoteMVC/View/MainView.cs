@@ -14,11 +14,15 @@ namespace NoteMVP.View
         int bookCount { get; set; }
         void setNotebooks(List<Notebook> books);        
         void updateNotebook(Notebook book);
+        void setSearchResults(List<Note> notes);
         void updateNoteBooks(List<Notebook> books);
+        void setSyncStart();
+        void setSearchEnd();
         event EventHandler<Notebook> onBookCreated;
         event EventHandler<Notebook> onBookDeleted;        
         event EventHandler<Note> onNoteDeleted;
         event EventHandler<Note> onNoteUpdated;
         event EventHandler<Note> onNoteCreated;
+        event EventHandler<String> onSearch;
     }
 }

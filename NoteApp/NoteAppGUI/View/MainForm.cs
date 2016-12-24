@@ -17,14 +17,15 @@ namespace NoteAppGUI.View
         public MainForm()
         {
             InitializeComponent();
-            noteCreatedBtn.Click += new System.EventHandler(this.onAddBook);
+            bookCreatedBtn.Click += new System.EventHandler(this.onAddBook);
             this.newBookNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             removeCreateBookPanel();
             handleZeroBook();
             addBookBtn.Text = "\u002B";
             addNoteBtn.Text = "\u002B";
-            noteCreatedBtn.Text = "\uD83D\uDCBE";
+            bookCreatedBtn.Text = "\uD83D\uDCBE";
             closeBookCreate.Text = "\u2715";
+            searchBtn.Text = "\uD83D\uDD0D";
             notebookViewControl1.setObserver(this);
             bookCount = 0;
             noteCount = 0;
@@ -158,6 +159,7 @@ namespace NoteAppGUI.View
 
         private void onAddBook(object sender, EventArgs args)
         {
+            addNoteBtn.Show();
             var ticks = DateTime.Now.Ticks;
             var name = newBookNameTxt.Text;
             newBookNameTxt.Text = "";
@@ -182,7 +184,8 @@ namespace NoteAppGUI.View
         }
 
         public void setSelectedBook(object sender, Notebook notebook)
-        {            
+        {
+            addNoteBtn.Show();
             notebookViewControl1.activeBook = notebook;
         }
 
@@ -286,5 +289,49 @@ namespace NoteAppGUI.View
         public event EventHandler<Note> onNoteUpdated;
         public event EventHandler<Notebook> onBookCreated;
         public event EventHandler<Note> onNoteCreated;
+        public event EventHandler<string> onSearch;
+
+        public void setSearchResults(List<Note> notes)
+        {
+            addNoteBtn.Hide();
+            notebookViewControl1.setSearchResult(notes, searchTxtBox.Text);
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            var searchTxt = searchTxtBox.Text;
+            if (this.onSearch != null && searchTxt != "")
+            {
+                this.onSearch(sender, searchTxt);
+            }
+            //var time = DateTime.Now.Ticks;
+            //var notes = new List<Note>();
+            //for(var i = 0; i < 5; i++) {
+            //    notes.Add(new Note() {
+            //        Id = i, 
+            //        created = DateTime.Now.Ticks + i, 
+            //        title = "Note" + i,
+            //        content = "Content" + i,
+            //        Notebook = new Notebook() {
+            //            Id = i,
+            //            name = "Book" + 1
+            //        }
+            //    });
+            //}
+            //setSearchResults(notes); 
+        }
+
+
+        public void setSyncStart()
+        {
+            syncStatusLbl.Text = "In Progress";
+            syncStatusLbl.ForeColor = System.Drawing.Color.Yellow;
+        }
+
+        public void setSearchEnd()
+        {
+            syncStatusLbl.Text = "Complete";
+            syncStatusLbl.ForeColor = System.Drawing.Color.YellowGreen;
+        }
     }
 }

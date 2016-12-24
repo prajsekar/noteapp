@@ -46,6 +46,7 @@ namespace NoteApp.View
                 {
                     return;
                 }
+                deleteBookBtn.Show();
                 _currentNote = value;
                 var notebook = value;
                 this.notebookTitleLbl.Text = notebook.name;
@@ -262,5 +263,18 @@ namespace NoteApp.View
         {
             observer.bookDeletedByUC(activeBook);
         }
-    }
+
+        public void setSearchResult(List<Note> notes, String searchKey)
+        {
+            notebookTitleLbl.Text = String.Format("Search results for \"{0}\"", searchKey);
+            noteCreateTitleLbl.Text = "";
+            deleteBookBtn.Hide();
+            clearPanel(noteListPanel);
+            noteEntryMap.Clear();
+            foreach (var note in notes)
+            {
+                addNoteControl(note);
+            }
+        }
+    } 
 }
