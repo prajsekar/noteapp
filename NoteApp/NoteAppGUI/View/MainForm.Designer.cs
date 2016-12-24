@@ -60,6 +60,7 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource4 = new System.Windows.Forms.BindingSource(this.components);
+            this.noNotesMessage = new System.Windows.Forms.Label();
             this.notebookViewControl1 = new NoteApp.View.NotebookViewControl();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -372,6 +373,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bookContentPanel.BackColor = System.Drawing.Color.White;
             this.bookContentPanel.Controls.Add(this.notebookViewControl1);
+            this.bookContentPanel.Controls.Add(this.noNotesMessage);
             this.bookContentPanel.Location = new System.Drawing.Point(1, 0);
             this.bookContentPanel.Name = "bookContentPanel";
             this.bookContentPanel.Size = new System.Drawing.Size(524, 382);
@@ -402,13 +404,24 @@
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
+            // noNotesMessage
+            // 
+            this.noNotesMessage.AutoSize = true;
+            this.noNotesMessage.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noNotesMessage.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.noNotesMessage.Location = new System.Drawing.Point(73, 175);
+            this.noNotesMessage.Name = "noNotesMessage";
+            this.noNotesMessage.Size = new System.Drawing.Size(378, 32);
+            this.noNotesMessage.TabIndex = 15;
+            this.noNotesMessage.Text = "Get organised! start taking notes...";
+            // 
             // notebookViewControl1
             // 
             this.notebookViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.notebookViewControl1.Location = new System.Drawing.Point(0, 0);
             this.notebookViewControl1.Name = "notebookViewControl1";
             this.notebookViewControl1.Size = new System.Drawing.Size(524, 382);
-            this.notebookViewControl1.TabIndex = 0;
+            this.notebookViewControl1.TabIndex = 16;
             // 
             // MainForm
             // 
@@ -433,6 +446,7 @@
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.bookContentPanel.ResumeLayout(false);
+            this.bookContentPanel.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -475,8 +489,9 @@
         private System.Windows.Forms.Button addNoteBtn;
         private System.Windows.Forms.Button bookCreatedBtn;
         private System.Windows.Forms.Button closeBookCreate;
-        private NoteApp.View.NotebookViewControl notebookViewControl1;
         private System.Windows.Forms.Button searchBtn;
+        private NoteApp.View.NotebookViewControl notebookViewControl1;
+        private System.Windows.Forms.Label noNotesMessage;
     }
 }
 
