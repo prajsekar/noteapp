@@ -13,7 +13,7 @@ namespace NoteApp.Application
     {
         public static void bootstrapWinClient()
         {
-            NoteService.RepositoryKey = "localDB";
+            NoteAppService.RepositoryKey = "localDB";
             //Register local data base
             LocalDbBoostrap.registerDataStore();
             DataStoreFactory.Instance.Key = "localDB";

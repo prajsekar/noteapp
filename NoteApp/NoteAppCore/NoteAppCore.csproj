@@ -7,7 +7,7 @@
     <ProjectGuid>{5CAAD627-0325-476E-8DF4-7F9172D2499B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoteAppCore</RootNamespace>
+    <RootNamespace>Appnote.Core</RootNamespace>
     <AssemblyName>NoteAppCore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -53,13 +53,17 @@
     <Compile Include="Model\Entity\Notebook.cs" />
     <Compile Include="Model\Entity\StoreInfo.cs" />
     <Compile Include="Model\Entity\User.cs" />
-    <Compile Include="Model\service\INoteAppService.cs" />
-    <Compile Include="Model\service\NoteService.cs" />
+    <Compile Include="Model\Service\DataService.cs" />
+    <Compile Include="Model\Service\IDataService.cs" />
+    <Compile Include="Model\Service\INoteAppService.cs" />
+    <Compile Include="Model\Service\NoteAppService.cs" />
+    <Compile Include="Model\Service\NotebookService.cs" />
+    <Compile Include="Model\Service\NoteService.cs" />
+    <Compile Include="Model\Service\UserService.cs" />
     <Compile Include="persistence\DatastoreFactory.cs" />
     <Compile Include="persistence\IDataStoreFactory.cs" />
     <Compile Include="persistence\IRepository.cs" />
     <Compile Include="persistence\IRepositoryAsync.cs" />
-    <Compile Include="persistence\IStoreContext.cs" />
     <Compile Include="persistence\NoteAppDataException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
