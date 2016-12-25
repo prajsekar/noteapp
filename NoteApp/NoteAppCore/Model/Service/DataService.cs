@@ -36,11 +36,11 @@ namespace NoteApp.Core.Model.Service
             return result;
         }
 
-        public void delete(T obj)
+        public void delete(K key)
         {
             using (var ctx = DataStoreFactory.Instance.getRepository(key))
             {
-               ctx.delete<T>(obj);
+               ctx.delete<T, K>(key);
             }
         }
 

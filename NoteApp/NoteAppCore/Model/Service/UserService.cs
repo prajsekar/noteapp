@@ -23,5 +23,19 @@ namespace NoteApp.Core.Model.Service
                 ctx.update<User>(user, u => u.name, u => u.Notebooks);
             }    
         }
+
+        public User validate(User user)
+        {
+            User dbUser = null;
+            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            {
+                dbUser = ctx.getDataSet<User>().SingleOrDefault<User>(u => String.Equals(u.mail,user.mail));
+                if (dbUser == null)
+                {
+                    dbUser = this.add(user);     
+                }
+                return dbUser;
+            }   
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace Appnote.Core.Model.Entity
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Notebook : IUpdateTimeRequired
+    public partial class Notebook : IUpdateTimeRequired, ICloneable
     {
         public Notebook()
         {
@@ -30,6 +30,23 @@ namespace Appnote.Core.Model.Entity
         public void updateModifiedTime(long time)
         {
             this.updated = time;
+        }       
+
+        public Notebook(Notebook source)
+        {
+            this.Id = source.Id;
+            this.secondaryId = source.secondaryId;
+            this.name= source.name;
+            this.updated = source.updated;
+            this.created = source.created;
+            this.UserId = source.UserId;
+            this.Notes = source.Notes;
+            this.User = source.User;
+        }
+
+        public object Clone()
+        {
+            return new Notebook(this);
         }
     }
 }

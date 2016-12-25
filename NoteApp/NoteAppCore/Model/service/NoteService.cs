@@ -26,11 +26,13 @@ namespace NoteApp.Core.Model.Service
 
         public List<Note> search(String str)
         {
+            List<Note> result = null;
             using (var ctx = DataStoreFactory.Instance.getRepository(key))
             {
-                var result = ctx.getDataSet<Note>().Where<Note>(n => (n.title.Contains(str) || n.content.Contains(str)));
-                return result.ToList();
+                var query = ctx.getDataSet<Note>().Where<Note>(n => (n.title.Contains(str) || n.content.Contains(str)));
+                result = query.ToList<Note>().Select<Note, Note>((n) => (Note)n.Clone()).ToList<Note>();                
             }
+            return result;
         }
 
         public List<Note> getModified(long time)

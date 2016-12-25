@@ -12,7 +12,7 @@ using Appnote.Core.Model;
 
 namespace Cache.EntityFramework
 {
-    public class NoteDB : DbContext, IRepository
+    public class NoteDB : DbContext, IRepository 
     {
         public NoteDB(String connectionString) :
             base(connectionString)
@@ -37,7 +37,7 @@ namespace Cache.EntityFramework
                     timeUpdatedEntry.updateCreationTime(time);
                     timeUpdatedEntry.updateModifiedTime(time);
                 }
-                result = Set<T>().Add(obj);
+                result = Set<T>().Add(obj);                
                 SaveChanges();
             }
             catch (UpdateException ex)
@@ -47,6 +47,11 @@ namespace Cache.EntityFramework
             catch (DataException ex)
             {
                 throw new NoteAppDataException(String.Format("Error creating new {0} entry", typeof(T).FullName), ex, "DataError");
+            }
+            if (result is ICloneable)
+            {
+                var cloneable = (ICloneable)result;
+                result = (T)cloneable.Clone();
             }
             return result;
         }
@@ -71,15 +76,22 @@ namespace Cache.EntityFramework
             }
         }
 
-        public void delete<T>(T obj) where T : class
+        public void delete<T, K>(K key) where T : class
         {
-            Set<T>().Remove(obj);
+            var result = Set<T>().Find(key);
+            Set<T>().Remove(result);
             SaveChanges();
         }
 
         public T get<T, K>(K id) where T : class
         {
-            return Set<T>().Find(id);
+            var result = Set<T>().Find(id);
+            if (result is ICloneable)
+            {
+                var cloneable = (ICloneable)result;
+                result = (T)cloneable.Clone();
+            }
+            return result;
         }
 
         public IQueryable<T> getDataSet<T>() where T : class

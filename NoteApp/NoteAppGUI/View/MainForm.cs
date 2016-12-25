@@ -1,4 +1,5 @@
 ﻿using Appnote.Core.Model.Entity;
+using NoteMVP.Presenter;
 using NoteMVP.View;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace NoteAppGUI.View
         public MainForm()
         {
             InitializeComponent();
+            presenter = new NoteAppPresenter(this);
             bookCreatedBtn.Click += new System.EventHandler(this.onAddBook);
             this.newBookNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             removeCreateBookPanel();
@@ -29,7 +31,9 @@ namespace NoteAppGUI.View
             notebookViewControl1.setObserver(this);
             bookCount = 0;
             noteCount = 0;
+            
         }
+        private NoteAppPresenter presenter;
         private Dictionary<String, NotebookControl> bookControlMap = new Dictionary<String, NotebookControl>();
         private void CheckEnterKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
@@ -122,13 +126,16 @@ namespace NoteAppGUI.View
 
         public void setNotebooks(List<Notebook> books)
         {
-            clearPanel(notebookStackPanel);            
-            foreach (var book in books)
+            if (books != null)
             {
-                addBookToPanel(book);                
+                clearPanel(notebookStackPanel);
+                foreach (var book in books)
+                {
+                    addBookToPanel(book);
+                }
+                setSelectedBook(this, books[0]);
+                revertZeroBook();
             }
-            setSelectedBook(this, books[0]);
-            revertZeroBook();
         }
 
        
@@ -241,7 +248,7 @@ namespace NoteAppGUI.View
         {   
             if (this.onNoteUpdated != null)
             {
-                this.onNoteDeleted(this, note);
+                this.onNoteUpdated(this, note);
             }
         }       
 
@@ -290,6 +297,7 @@ namespace NoteAppGUI.View
         public event EventHandler<Notebook> onBookCreated;
         public event EventHandler<Note> onNoteCreated;
         public event EventHandler<string> onSearch;
+        public event EventHandler<EventArgs> LoadForm;
 
         public void setSearchResults(List<Note> notes)
         {
@@ -332,6 +340,14 @@ namespace NoteAppGUI.View
         {
             syncStatusLbl.Text = "Complete";
             syncStatusLbl.ForeColor = System.Drawing.Color.YellowGreen;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (this.LoadForm != null)
+            {
+                this.LoadForm(sender, e);
+            }
         }
     }
 }

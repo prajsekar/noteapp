@@ -24,5 +24,6 @@ namespace NoteMVP.View
         event EventHandler<Note> onNoteUpdated;
         event EventHandler<Note> onNoteCreated;
         event EventHandler<String> onSearch;
+        event EventHandler<EventArgs> LoadForm;
     }
 }

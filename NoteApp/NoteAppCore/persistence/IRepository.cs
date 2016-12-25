@@ -11,7 +11,7 @@ namespace Appnote.Core.Persistence
     {
         T add<T>(T obj) where T : class;
         void update<T>(T obj, params Expression<Func<T, object>>[] propertiesToUpdate) where T : class;
-        void delete<T>(T obj) where T : class;
+        void delete<T, K>(K key) where T : class;
         T get<T, K>(K id) where T : class;
         IQueryable<T> getDataSet<T>() where T : class;
     }

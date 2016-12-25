@@ -54,11 +54,11 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.addNoteBtn = new System.Windows.Forms.Button();
             this.bookContentPanel = new System.Windows.Forms.Panel();
+            this.notebookViewControl1 = new NoteApp.View.NotebookViewControl();
+            this.noNotesMessage = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.searchBtn = new System.Windows.Forms.Button();
-            this.noNotesMessage = new System.Windows.Forms.Label();
             this.addBookTip = new System.Windows.Forms.ToolTip(this.components);
-            this.notebookViewControl1 = new NoteApp.View.NotebookViewControl();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -374,6 +374,27 @@
             this.bookContentPanel.Size = new System.Drawing.Size(524, 382);
             this.bookContentPanel.TabIndex = 13;
             // 
+            // notebookViewControl1
+            // 
+            this.notebookViewControl1.activeBook = null;
+            this.notebookViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.notebookViewControl1.Location = new System.Drawing.Point(0, 0);
+            this.notebookViewControl1.Name = "notebookViewControl1";
+            this.notebookViewControl1.Size = new System.Drawing.Size(524, 382);
+            this.notebookViewControl1.TabIndex = 16;
+            this.addBookTip.SetToolTip(this.notebookViewControl1, "Delete book");
+            // 
+            // noNotesMessage
+            // 
+            this.noNotesMessage.AutoSize = true;
+            this.noNotesMessage.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noNotesMessage.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.noNotesMessage.Location = new System.Drawing.Point(73, 175);
+            this.noNotesMessage.Name = "noNotesMessage";
+            this.noNotesMessage.Size = new System.Drawing.Size(378, 32);
+            this.noNotesMessage.TabIndex = 15;
+            this.noNotesMessage.Text = "Get organised! start taking notes...";
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.searchBtn);
@@ -400,33 +421,12 @@
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
-            // noNotesMessage
-            // 
-            this.noNotesMessage.AutoSize = true;
-            this.noNotesMessage.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noNotesMessage.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.noNotesMessage.Location = new System.Drawing.Point(73, 175);
-            this.noNotesMessage.Name = "noNotesMessage";
-            this.noNotesMessage.Size = new System.Drawing.Size(378, 32);
-            this.noNotesMessage.TabIndex = 15;
-            this.noNotesMessage.Text = "Get organised! start taking notes...";
-            // 
             // addBookTip
             // 
             this.addBookTip.AutomaticDelay = 50;
             this.addBookTip.AutoPopDelay = 5000;
             this.addBookTip.InitialDelay = 50;
             this.addBookTip.ReshowDelay = 10;
-            // 
-            // notebookViewControl1
-            // 
-            this.notebookViewControl1.activeBook = null;
-            this.notebookViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.notebookViewControl1.Location = new System.Drawing.Point(0, 0);
-            this.notebookViewControl1.Name = "notebookViewControl1";
-            this.notebookViewControl1.Size = new System.Drawing.Size(524, 382);
-            this.notebookViewControl1.TabIndex = 16;
-            this.addBookTip.SetToolTip(this.notebookViewControl1, "Delete book");
             // 
             // MainForm
             // 
@@ -441,6 +441,7 @@
             this.Controls.Add(this.panel2);
             this.Name = "MainForm";
             this.Text = "Note App";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);

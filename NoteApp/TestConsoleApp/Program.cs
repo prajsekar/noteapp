@@ -17,14 +17,17 @@ namespace NoteApp
             NoteApplication.bootstrapWinClient();
             AppDomain.CurrentDomain.SetData("TestDir", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
             NoteAppService noteService = new NoteAppService();
-            noteService.userService.add(new User() { mail = "raj", name = "rajasekarnew" });
+            User dbUser = noteService.userService.validate(new User() { mail = "raj", name = "rajasekarnew" });
+            Console.WriteLine("Db User read.. {0}", dbUser.Id);
 
             using (IRepository repository = Appnote.Core.Persistence.DataStoreFactory.Instance.getRepository())
             {
                 Console.WriteLine("Created new NoteBook");
-                var book = repository.add<Notebook>(new Notebook() { UserId = 1, name = "Note2" });
+                var book = repository.add<Notebook>(new Notebook() { name = "Note212", UserId = dbUser.Id });
+                //book.User = dbUser;
+                //repository.update<Notebook>(book, b => b.User);
                 Console.WriteLine("Created new Note");
-                var noteSaved = repository.add<Note>(new Note() { NotebookId = 1, title = "Title1", content = "Content 2" });
+                var noteSaved = repository.add<Note>(new Note() { NotebookId = book.Id, title = "Title1", content = "Content 2" });
                 var notes = noteService.noteService.search("Title");
                 foreach (var note in notes)
                 {
@@ -40,7 +43,28 @@ namespace NoteApp
 
                 repository.add<StoreInfo>(new StoreInfo() { lastOffline = DateTime.Now.Ticks, lastSynced = DateTime.Now.Ticks });
 
+                var time = DateTime.Now.Ticks;
+                var noteList = new List<Note>();
+                for (var i = 0; i < 5; i++)
+                {
+                    var newBook = new Notebook() { name = "Book1" + i, UserId = dbUser.Id };
+                    newBook = noteService.bookService.add(newBook);
 
+                    var newNote = new Note()
+                      {
+                          created = DateTime.Now.Ticks + i,
+                          title = "Note" + i,
+                          content = "Content" + i,
+                          NotebookId = newBook.Id
+                      };
+                    newNote = noteService.noteService.add(newNote);
+                }
+
+                var result = noteService.bookService.getAll(dbUser);
+                foreach (var note in result)
+                {
+                    Console.WriteLine("Note name : {0} ", note.name);
+                }
 
             }
             Console.WriteLine("Test,,,");

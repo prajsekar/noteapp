@@ -11,6 +11,6 @@ namespace NoteApp.Core.Model.Service
         T add(T obj);
         void update(T obj);
         T get(K key);
-        void delete(T obj);
+        void delete(K key);       
     }
 }

@@ -21,7 +21,7 @@ namespace NoteApp.Core.Model.Service
         {
             using (var ctx = DataStoreFactory.Instance.getRepository(key))
             {
-                ctx.update<Notebook>(book, b => b.name, b => b.secondaryId, b => b.Notes);
+                ctx.update<Notebook>(book, b => b.name, b => b.secondaryId, b => b.Notes, b=> b.User);
             }    
         }
 
@@ -32,6 +32,18 @@ namespace NoteApp.Core.Model.Service
                 var result = ctx.getDataSet<Notebook>().Where<Notebook>(n => (n.updated > time));
                 return result.ToList();
             }
+        }
+
+        public List<Notebook> getAll(User user)
+        {
+            List<Notebook> result = null;
+            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            {
+                var query = ctx.getDataSet<Notebook>().Where<Notebook>(n => n.UserId == user.Id);
+                result  = query.ToList<Notebook>().Select<Notebook, Notebook>((n) => (Notebook)n.Clone()).ToList<Notebook>();
+
+            }
+            return result;
         }
     }
 }
