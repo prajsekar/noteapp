@@ -1,4 +1,4 @@
-﻿using Appnote.Core.Model.Entity;
+﻿using NoteApp.Core.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Appnote.Core.Persistence;
+﻿using NoteApp.Core.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +9,17 @@ namespace NoteApp.Core.Model.Service
 {
     public abstract class DataService<T,K> : IDataService<T,K> where T : class
     {
-        protected String key;
+        protected String repoKey;
         
         public DataService(String key)
         {
-            this.key = key;
+            this.repoKey = key;
         }
         
-        public T add(T obj)
+        virtual public T add(T obj)
         {
             T result = null;
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                 result = ctx.add<T>(obj);
             }
@@ -29,7 +29,7 @@ namespace NoteApp.Core.Model.Service
         public T get(K key)
         {
             T result = null;
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                 result = ctx.get<T,K>(key);
             }
@@ -38,7 +38,7 @@ namespace NoteApp.Core.Model.Service
 
         public void delete(K key)
         {
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                ctx.delete<T, K>(key);
             }

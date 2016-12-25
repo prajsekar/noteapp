@@ -25,9 +25,9 @@ namespace NoteApp.Core.Model.Service
 
         private void initServices()
         {
-            noteService = new NoteService(key);
-            bookService = new NotebookService(key);
-            userService = new UserService(key);
+            noteService = new NoteService(key, this);
+            bookService = new NotebookService(key, this);
+            userService = new UserService(key, this);
         }
         
         public NoteService noteService {get; private set;}               

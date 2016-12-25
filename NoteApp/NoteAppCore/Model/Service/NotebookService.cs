@@ -1,5 +1,5 @@
-﻿using Appnote.Core.Model.Entity;
-using Appnote.Core.Persistence;
+﻿using NoteApp.Core.Model.Entity;
+using NoteApp.Core.Persistence;
 using NoteApp.Core.Model.Service;
 using System;
 using System.Collections.Generic;
@@ -11,39 +11,65 @@ namespace NoteApp.Core.Model.Service
 {
     public class NotebookService : DataService<Notebook, int>
     {
-        public NotebookService(String key)
+        private NoteAppService service;
+        public NotebookService(String key, NoteAppService service)
             : base(key)
         {
-
+            this.service = service;
         }
 
         public override void update(Notebook book)
         {
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                 ctx.update<Notebook>(book, b => b.name, b => b.secondaryId, b => b.Notes, b=> b.User);
             }    
         }
 
-        public List<Notebook> getModified(long time)
+        public List<Notebook> getModified(long time, int userId)
         {
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
-                var result = ctx.getDataSet<Notebook>().Where<Notebook>(n => (n.updated > time));
-                return result.ToList();
+                var query = ctx.getDataSet<Notebook>().Where<Notebook>(n => (n.updated > time) && (n.UserId == userId));
+                return query.ToList<Notebook>().Select<Notebook, Notebook>((n) => (Notebook)n.Clone()).ToList<Notebook>();
             }
         }
 
         public List<Notebook> getAll(User user)
         {
             List<Notebook> result = null;
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                 var query = ctx.getDataSet<Notebook>().Where<Notebook>(n => n.UserId == user.Id);
                 result  = query.ToList<Notebook>().Select<Notebook, Notebook>((n) => (Notebook)n.Clone()).ToList<Notebook>();
 
             }
             return result;
+        }
+
+        public void setRemoteModified(Notebook book)
+        {
+            Notebook result = null;
+            if (book.Id == 0)
+            {
+                book.User = null;
+                result = this.add(book);
+                book.Id = result.Id;
+            }
+            else
+            {
+                foreach (var note in book.Notes)
+                {                    
+                    if (note.Id == 0)
+                    {
+                        note.Notebook = null;
+                        note.NotebookId = book.Id;
+                        var dbNote = service.noteService.add(note);
+                        note.Id = dbNote.Id;
+                    }
+                }
+            }
+            
         }
     }
 }

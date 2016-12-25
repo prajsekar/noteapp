@@ -1,5 +1,5 @@
-﻿using Appnote.Core.Model.Entity;
-using Appnote.Core.Persistence;
+﻿using NoteApp.Core.Model.Entity;
+using NoteApp.Core.Persistence;
 using NoteApp.Core.Model.Service;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,17 @@ namespace NoteApp.Core.Model.Service
 {
     public class UserService : DataService<User, int>
     {
-        public UserService(String key) : base(key)
+
+        private NoteAppService service;
+        public UserService(String key, NoteAppService service)
+            : base(key)
         {
-
+            this.service = service;
         }
-
+       
         public override void update(User user)
         {
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                 ctx.update<User>(user, u => u.name, u => u.Notebooks);
             }    
@@ -27,7 +30,7 @@ namespace NoteApp.Core.Model.Service
         public User validate(User user)
         {
             User dbUser = null;
-            using (var ctx = DataStoreFactory.Instance.getRepository(key))
+            using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
                 dbUser = ctx.getDataSet<User>().SingleOrDefault<User>(u => String.Equals(u.mail,user.mail));
                 if (dbUser == null)

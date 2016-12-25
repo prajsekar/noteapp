@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Core;
 using System.Data;
-using Appnote.Core.Persistence;
-using Appnote.Core.Model.Entity;
-using Appnote.Core.Model;
+using NoteApp.Core.Persistence;
+using NoteApp.Core.Model.Entity;
+using NoteApp.Core.Model;
 
 namespace Cache.EntityFramework
 {

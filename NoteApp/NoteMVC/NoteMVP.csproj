@@ -56,6 +56,10 @@
       <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
       <Name>NoteAppCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sync\Sync.csproj">
+      <Project>{f9117585-0874-4a8a-a679-e4b425c45f9b}</Project>
+      <Name>Sync</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Appnote.Core.Persistence 
+namespace NoteApp.Core.Persistence 
 {
     public class DataStoreFactory    {
         static DataStoreFactory()
@@ -31,7 +31,7 @@ namespace Appnote.Core.Persistence
         }
 
         //Returns repository impl
-        public IRepository getRepository(String key, object args)
+        public IRepository getRepository(String key)
         {            
             IRepository result = null;
             if (!String.IsNullOrEmpty(Key))
@@ -50,9 +50,9 @@ namespace Appnote.Core.Persistence
             return result;
         }
 
-        public IRepository getRepository(object args = null)
+        public IRepository getRepository()
         {   
-            return getRepository(Key, args);
+            return getRepository(Key);
         }
 
         public static DataStoreFactory Instance { get; private set; }

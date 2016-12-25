@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteApp.Core.Persistence 
+namespace NoteApp.Core.Model.Service
 {
-    public interface IDataStoreFactory
+    public class DbSyncAdapterService
     {
-        IRepository getRepository();
+        
     }
 }

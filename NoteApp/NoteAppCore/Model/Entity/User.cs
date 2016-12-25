@@ -1,4 +1,4 @@
-﻿namespace Appnote.Core.Model.Entity 
+﻿namespace NoteApp.Core.Model.Entity 
 {
     using System;
     using System.Collections.Generic;

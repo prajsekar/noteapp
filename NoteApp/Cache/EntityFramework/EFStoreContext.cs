@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Appnote.Core.Persistence;
+using NoteApp.Core.Persistence;
 using System.IO;
 
 namespace Cache.EntityFramework

@@ -1,4 +1,4 @@
-﻿using Appnote.Core.Model.Entity;
+﻿using NoteApp.Core.Model.Entity;
 using NoteMVP.Presenter;
 using NoteMVP.View;
 using System;
@@ -126,7 +126,7 @@ namespace NoteAppGUI.View
 
         public void setNotebooks(List<Notebook> books)
         {
-            if (books != null)
+            if (books != null && books.Count > 0)
             {
                 clearPanel(notebookStackPanel);
                 foreach (var book in books)

@@ -1,5 +1,5 @@
-﻿using Appnote.Core.Model.Entity;
-using Appnote.Core.Persistence;
+﻿using NoteApp.Core.Model.Entity;
+using NoteApp.Core.Persistence;
 using NoteApp.Core.Model.Service;
 using System;
 using System.Collections.Generic;
@@ -16,9 +16,9 @@ namespace NoteApp
         {
             AppDomain.CurrentDomain.SetData("TestDir", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
             NoteAppService noteService = new NoteAppService();
-            noteService.userService.add(new User() { mail = "raj", name = "rajasekarnew" });            
+            var dbUser = noteService.userService.add(new User() { mail = "raj", name = "rajasekarnew" });            
 
-            using (IRepository repository = Appnote.Core.Persistence.DataStoreFactory.Instance.getRepository())
+            using (IRepository repository = NoteApp.Core.Persistence.DataStoreFactory.Instance.getRepository())
             {
                 Console.WriteLine("Created new NoteBook");
                 var book = repository.add<Notebook>(new Notebook() { UserId = 1, name = "Note2" });
@@ -31,7 +31,7 @@ namespace NoteApp
                     Console.WriteLine(new DateTime(note.updated));
                 }
 
-                var modifiednotes = noteService.noteService.getModified(DateTime.Parse(@"12/22/2016 12:14:10 AM").Ticks);
+                var modifiednotes = noteService.noteService.getModified(DateTime.Parse(@"12/22/2016 12:14:10 AM").Ticks, dbUser.Id);
                 foreach (var note in modifiednotes)
                 {
                     Console.WriteLine(note.Id);

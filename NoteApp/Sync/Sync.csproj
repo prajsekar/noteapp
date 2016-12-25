@@ -7,8 +7,8 @@
     <ProjectGuid>{F9117585-0874-4A8A-A679-E4B425C45F9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sync</RootNamespace>
-    <AssemblyName>Sync</AssemblyName>
+    <RootNamespace>NoteApp.Sync</RootNamespace>
+    <AssemblyName>noteapp.sync</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,11 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStoreSyncProcessor.cs" />
+    <Compile Include="DataWatcher.cs" />
+    <Compile Include="PrimaryKeyTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SyncEvent.cs" />
-    <Compile Include="ISyncListener.cs" />
-    <Compile Include="ISyncProcessor.cs" />
+    <Compile Include="SyncService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoteAppCore\NoteAppCore.csproj">

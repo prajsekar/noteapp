@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteAppGUI.View;
-using Appnote.Core.Model.Entity;
+using NoteApp.Core.Model.Entity;
 
 namespace NoteApp.View
 {

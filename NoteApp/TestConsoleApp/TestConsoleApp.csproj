@@ -62,7 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +79,10 @@
     <ProjectReference Include="..\NoteApp\NoteApp.csproj">
       <Project>{08bd69fd-c36c-479e-a1bd-bb5ac0d30b1a}</Project>
       <Name>NoteApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sync\Sync.csproj">
+      <Project>{f9117585-0874-4a8a-a679-e4b425c45f9b}</Project>
+      <Name>Sync</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

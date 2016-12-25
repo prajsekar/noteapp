@@ -1,4 +1,4 @@
-﻿using Appnote.Core.Persistence;
+﻿using NoteApp.Core.Persistence;
 using Cache.EntityFramework;
 using System;
 using System.Collections.Generic;
