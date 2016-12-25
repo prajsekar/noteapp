@@ -11,8 +11,7 @@ namespace NoteApp.Sync
 {
     public class SyncService : NoteAppService
     {
-        private DataWatcher watcher;
-        
+        private DataWatcher watcher;        
         
         public SyncService(String repoKey, User user)
             :base(repoKey)
@@ -46,7 +45,7 @@ namespace NoteApp.Sync
 
         }
 
-        private void onWatcherEvent(object sender, List<DataWatcherEvent> notes)
+        private void onWatcherEvent(object sender, RemoteRecords notes)
         {
             if (this.BooksUpdated != null)
             {
@@ -54,7 +53,7 @@ namespace NoteApp.Sync
             }
         }
 
-        public event EventHandler<List<DataWatcherEvent>> BooksUpdated;
+        public event EventHandler<RemoteRecords> BooksUpdated;
     }
 
     

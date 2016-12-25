@@ -22,7 +22,7 @@ namespace NoteApp.Core.Model.Service
         {
             using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
-                ctx.update<Notebook>(book, b => b.name, b => b.secondaryId, b => b.Notes, b=> b.User);
+                ctx.update<Notebook>(book, b => b.name, b => b.secondaryId);
             }    
         }
 

@@ -33,6 +33,12 @@ namespace NoteMVP.Presenter
             view.onNoteUpdated += view_onNoteUpdated;
             view.onSearch += view_onSearch;
             view.onBookDeleted += view_onBookDeleted;
+            view.onBookSelected += view_onBookSelected;
+        }
+
+        void view_onBookSelected(object sender, Notebook e)
+        {
+            view.setNoteBook(model.bookService.get(e.Id));
         }
 
         void view_onBookDeleted(object sender, NoteApp.Core.Model.Entity.Notebook e)
@@ -48,11 +54,16 @@ namespace NoteMVP.Presenter
             view.setSearchResults(result);
         }
 
+        
         void view_onNoteUpdated(object sender, NoteApp.Core.Model.Entity.Note e)
         {
+            //_book = e.Notebook;
+            e.Notebook = null;
             model.noteService.update(e);
-            PrimaryKeyTranslator.translate(e);
+            var newNote = (Note)e.Clone();
+            PrimaryKeyTranslator.translate(newNote);            
             remoteModel.noteService.update(e);
+            e.Notebook = model.bookService.get(e.NotebookId);            
         }
 
         void view_onNoteDeleted(object sender, NoteApp.Core.Model.Entity.Note e)
@@ -64,21 +75,27 @@ namespace NoteMVP.Presenter
         }
 
         void view_onNoteCreated(object sender, NoteApp.Core.Model.Entity.Note e)
-        {
-            var cNote = (Note)e.Clone();
-            if (cNote.Notebook != null)
+        {            
+            if (e.Notebook != null)
             {
-                cNote.NotebookId = e.Notebook.Id;
-                cNote.Notebook = null;                
+                e.NotebookId = e.Notebook.Id;
+                e.Notebook = null;                
             }
-            model.noteService.add(cNote);            
-            PrimaryKeyTranslator.translate(cNote);
-            if (cNote.Notebook != null)
+            var dbNote = model.noteService.add(e);
+            var dbNoteClone = (Note)dbNote.Clone();
+            PrimaryKeyTranslator.translate(dbNoteClone);
+            if (dbNoteClone.Notebook != null)
             {
-                cNote.NotebookId = cNote.Notebook.Id;
-                cNote.Notebook = null;
+                dbNoteClone.NotebookId = dbNoteClone.Notebook.Id;
+                dbNoteClone.Notebook = null;
             }
-            remoteModel.noteService.add(cNote);
+            var result = remoteModel.noteService.add(dbNote);
+            e.Notebook = model.bookService.get(e.NotebookId);
+            e.secondaryId = result.Id;
+            dbNote.secondaryId = result.Id;
+            dbNote.Notebook = null;
+            model.noteService.update(dbNote);
+            
         }
 
         void view_onBookCreated(object sender, NoteApp.Core.Model.Entity.Notebook e)
@@ -89,7 +106,9 @@ namespace NoteMVP.Presenter
             PrimaryKeyTranslator.translate(e);
             e.UserId = user.Id;
             e.User = null;
-            remoteModel.bookService.add(e);
+            var result = remoteModel.bookService.add(e);
+            e.secondaryId = result.Id;
+            model.bookService.update(e);
         }
 
         void view_LoadForm(object sender, EventArgs e)

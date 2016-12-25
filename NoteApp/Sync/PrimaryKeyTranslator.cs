@@ -10,10 +10,11 @@ namespace NoteApp.Sync
 {
     public class PrimaryKeyTranslator 
     {
-        public static void translate(Note note)
+        public static Note translate(Note note)
         {
             SwapKey(note);
             SwapKey(note.Notebook);
+            return note;
         }
 
         private static void SwapKey(Note note)
@@ -26,13 +27,14 @@ namespace NoteApp.Sync
             }
         }
 
-        public static void translate(Notebook book)
+        public static Notebook translate(Notebook book)
         {
             SwapKey(book);
             foreach(var note in book.Notes) 
             {
                 SwapKey(note);
             }
+            return book;
         }
 
         private static void SwapKey(Notebook book)

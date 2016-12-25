@@ -21,11 +21,8 @@ namespace NoteApp
             User dbUser = noteService.userService.validate(new User() { mail = "raj", name = "rajasekarnew" });
             Console.WriteLine("Db User read.. {0}", dbUser.Id);
 
-            var result = new DataWatcher(noteService, dbUser).getModified(DateTime.Parse(@"12/22/2016 12:14:10 AM").Ticks);
-            foreach (var wEvent in result)
-            {
-                Console.WriteLine("Changetype : {0} notebook Name : {1}", wEvent.changeType, wEvent.record.name);
-            }
+            //var result = new DataWatcher(noteService, dbUser).getModified(DateTime.Parse(@"12/22/2016 12:14:10 AM").Ticks);
+            
             //using (IRepository repository = Appnote.Core.Persistence.DataStoreFactory.Instance.getRepository())
             //{
             //    Console.WriteLine("Created new NoteBook");

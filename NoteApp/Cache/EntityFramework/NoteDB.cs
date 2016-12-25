@@ -30,13 +30,13 @@ namespace Cache.EntityFramework
             T result = null;
             try
             {
-                if (obj is IUpdateTimeRequired)
-                {
-                    var timeUpdatedEntry = (IUpdateTimeRequired)obj;
-                    var time = DateTime.Now.Ticks;
-                    timeUpdatedEntry.updateCreationTime(time);
-                    timeUpdatedEntry.updateModifiedTime(time);
-                }
+                //if (obj is IUpdateTimeRequired)
+                //{
+                //    var timeUpdatedEntry = (IUpdateTimeRequired)obj;
+                //    var time = DateTime.Now.Ticks;
+                //    timeUpdatedEntry.updateCreationTime(time);
+                //    timeUpdatedEntry.updateModifiedTime(time);
+                //}
                 result = Set<T>().Add(obj);                
                 SaveChanges();
             }
@@ -61,12 +61,12 @@ namespace Cache.EntityFramework
             try
             {                
                 Set<T>().Attach(obj);
-                if (typeof(T) is IUpdateTimeRequired)
-                {
-                    var timeUpdatedEntry = (IUpdateTimeRequired)obj;
-                    timeUpdatedEntry.updateModifiedTime(DateTime.Now.Ticks);                    
-                    Entry(obj).Property("updated").IsModified = true;
-                }
+                //if (typeof(T) is IUpdateTimeRequired)
+                //{
+                //    var timeUpdatedEntry = (IUpdateTimeRequired)obj;
+                //    timeUpdatedEntry.updateModifiedTime(DateTime.Now.Ticks);                    
+                //    Entry(obj).Property("updated").IsModified = true;
+                //}
                 propertiesToUpdate.ToList().ForEach(p => Entry(obj).Property(p).IsModified = true);
                 SaveChanges();
             }

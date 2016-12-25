@@ -192,8 +192,10 @@ namespace NoteAppGUI.View
 
         public void setSelectedBook(object sender, Notebook notebook)
         {
-            addNoteBtn.Show();
-            notebookViewControl1.activeBook = notebook;
+            if (this.onBookSelected != null)
+            {
+                this.onBookSelected(sender, notebook);
+            }
         }
 
         private void clearPanel(Panel panel)
@@ -248,6 +250,7 @@ namespace NoteAppGUI.View
         {   
             if (this.onNoteUpdated != null)
             {
+                note.updated = DateTime.Now.Ticks;
                 this.onNoteUpdated(this, note);
             }
         }       
@@ -349,5 +352,14 @@ namespace NoteAppGUI.View
                 this.LoadForm(sender, e);
             }
         }
+
+
+        public void setNoteBook(Notebook book)
+        {
+            addNoteBtn.Show();            
+            notebookViewControl1.activeBook = book;
+        }
+
+        public event EventHandler<Notebook> onBookSelected;
     }
 }

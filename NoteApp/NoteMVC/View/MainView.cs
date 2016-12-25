@@ -18,6 +18,7 @@ namespace NoteMVP.View
         void updateNoteBooks(List<Notebook> books);
         void setSyncStart();
         void setSearchEnd();
+        void setNoteBook(Notebook book);
         event EventHandler<Notebook> onBookCreated;
         event EventHandler<Notebook> onBookDeleted;        
         event EventHandler<Note> onNoteDeleted;
@@ -25,5 +26,6 @@ namespace NoteMVP.View
         event EventHandler<Note> onNoteCreated;
         event EventHandler<String> onSearch;
         event EventHandler<EventArgs> LoadForm;
+        event EventHandler<Notebook> onBookSelected;
     }
 }
