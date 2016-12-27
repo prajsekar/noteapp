@@ -26,7 +26,8 @@ namespace NoteApp.Core.Persistence
             }
             catch (ArgumentException)
             {
-                //Ignore any exception
+                factoryMap.Remove(key);
+                factoryMap.Add(key, factory);
             }
         }
 
@@ -34,7 +35,7 @@ namespace NoteApp.Core.Persistence
         public IRepository getRepository(String key)
         {            
             IRepository result = null;
-            if (!String.IsNullOrEmpty(Key))
+            if (!String.IsNullOrEmpty(key))
             {
 
                 IDataStoreFactory factory = null;

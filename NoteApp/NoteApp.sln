@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sync", "Sync\Sync.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppCore", "NoteAppCore\NoteAppCore.csproj", "{5CAAD627-0325-476E-8DF4-7F9172D2499B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteApp", "NoteApp\NoteApp.csproj", "{08BD69FD-C36C-479E-A1BD-BB5AC0D30B1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap", "NoteApp\Bootstrap.csproj", "{08BD69FD-C36C-479E-A1BD-BB5AC0D30B1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{D6384B42-A776-4455-8DD3-46A9895C891B}"
 EndProject

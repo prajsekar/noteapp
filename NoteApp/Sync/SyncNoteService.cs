@@ -13,7 +13,7 @@ namespace NoteApp.Sync
         private INoteAppService service;
         private INoteAppService remoteModel;
 
-        public SyncNoteService(String key, NoteAppService service, NoteAppService remoteModel)
+        public SyncNoteService(String key, INoteAppService service, INoteAppService remoteModel)
             : base(key, service)
         {
             this.service = service;

@@ -11,8 +11,8 @@ namespace NoteApp.Core.Model.Service
 {
     public class NotebookService : DataService<Notebook, int>
     {
-        private NoteAppService service;
-        public NotebookService(String key, NoteAppService service)
+        private INoteAppService service;
+        public NotebookService(String key, INoteAppService service)
             : base(key)
         {
             this.service = service;

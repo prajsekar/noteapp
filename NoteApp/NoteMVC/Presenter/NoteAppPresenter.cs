@@ -30,6 +30,12 @@ namespace NoteMVP.Presenter
             }
         }
 
+        public NoteAppPresenter(MainView view, INoteAppService service)
+        {
+            this.view = view;
+            this.model = service;
+        }
+
         private void registerHandlers()
         {
             view.LoadForm += view_LoadForm;

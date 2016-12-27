@@ -140,9 +140,10 @@ namespace NoteAppGUI.View
 
        
 
-        private void addBookToPanel(Notebook book, bool update = false)
+        private bool addBookToPanel(Notebook book, bool update = false)
         {   
-            NotebookControl control = null;            
+            NotebookControl control = null;
+            var valid = true;
             var valFound = bookControlMap.TryGetValue(book.name, out control);
             if (!valFound)
             {
@@ -155,6 +156,7 @@ namespace NoteAppGUI.View
             if (valFound && !update)
             {
                 MessageBox.Show("Note already exists, please try unique name", "Error");
+                valid = false;
             }
             else if (update)
             {
@@ -162,6 +164,7 @@ namespace NoteAppGUI.View
                 control.activeBook = book;
                 noteCount += book.Notes.Count;
             }
+            return valid;
         }
 
         private void onAddBook(object sender, EventArgs args)
@@ -172,15 +175,17 @@ namespace NoteAppGUI.View
             newBookNameTxt.Text = "";
             removeCreateBookPanel();
             var book = new Notebook() { Id = -1, name = name, created = ticks, updated = ticks };
-            addBookToPanel(book); 
-            if (notebookStackPanel.Controls.Count == 1)
+            if (addBookToPanel(book))
             {
-                setSelectedBook(this, book);
-                revertZeroBook();
-            }
-            if (this.onBookCreated != null)
-            {
-                this.onBookCreated(this, book);
+                if (notebookStackPanel.Controls.Count == 1)
+                {
+                    setSelectedBook(this, book);
+                    revertZeroBook();
+                }
+                if (this.onBookCreated != null)
+                {
+                    this.onBookCreated(this, book);
+                }
             }
         }
         private bool zeroBook = true;

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NoteApp.WinUI</RootNamespace>
-    <AssemblyName>noteapp.winui</AssemblyName>
+    <AssemblyName>noteapp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -149,9 +149,9 @@
       <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
       <Name>NoteAppCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NoteApp\NoteApp.csproj">
+    <ProjectReference Include="..\NoteApp\Bootstrap.csproj">
       <Project>{08bd69fd-c36c-479e-a1bd-bb5ac0d30b1a}</Project>
-      <Name>NoteApp</Name>
+      <Name>Bootstrap</Name>
     </ProjectReference>
     <ProjectReference Include="..\NoteMVC\NoteMVP.csproj">
       <Project>{2b389b33-bae1-49a6-9f39-63902895d3c9}</Project>

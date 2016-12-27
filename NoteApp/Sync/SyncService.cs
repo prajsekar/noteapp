@@ -12,9 +12,9 @@ namespace NoteApp.Sync
     public class SyncService : NoteAppService
     {
         private DataWatcher watcher;
-        private NoteAppService remoteModel;
+        private INoteAppService remoteModel;
         
-        public SyncService(String repoKey, NoteAppService remoteModel,  User user)
+        public SyncService(String repoKey, INoteAppService remoteModel,  User user)
             :base(repoKey)
         {
             watcher = new DataWatcher(this, user);
