@@ -11,17 +11,34 @@ namespace NoteApp.Sync
 {
     public class SyncService : NoteAppService
     {
-        private DataWatcher watcher;        
+        private DataWatcher watcher;
+        private NoteAppService remoteModel;
         
-        public SyncService(String repoKey, User user)
+        public SyncService(String repoKey, NoteAppService remoteModel,  User user)
             :base(repoKey)
         {
             watcher = new DataWatcher(this, user);
             this.user = user;
             watcher.DataAvailable += (sender, args) => onWatcherEvent(sender, args);
+            this.remoteModel = remoteModel;
+            this.bookService = new SyncBookService(repoKey, this, remoteModel);
+            this.noteService = new SyncNoteService(repoKey, this, remoteModel);
         }
-
-        public User user { get; set; }
+        
+        private User _user;
+        public override User user
+        {
+            get {
+                return _user;
+            }
+            set {
+                if (user != null)
+                {
+                    _user = value;
+                    watcher.setUser(user);
+                }
+            }
+        }
 
         public enum AppMode
         {
@@ -54,7 +71,5 @@ namespace NoteApp.Sync
         }
 
         public event EventHandler<RemoteRecords> BooksUpdated;
-    }
-
-    
+    }    
 }

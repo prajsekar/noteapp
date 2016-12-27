@@ -26,7 +26,7 @@ namespace NoteApp.Core.Model.Service
             return result;
         }
       
-        public T get(K key)
+        virtual public T get(K key)
         {
             T result = null;
             using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
@@ -36,7 +36,7 @@ namespace NoteApp.Core.Model.Service
             return result;
         }
 
-        public void delete(K key)
+        virtual public void delete(K key)
         {
             using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoteApp.Core.Model.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,8 +31,21 @@ namespace NoteApp.Core.Model.Service
             userService = new UserService(key, this);
         }
         
-        public NoteService noteService {get; private set;}               
-        public NotebookService bookService { get; private set; }
-        public UserService userService { get; private set; }
+        public NoteService noteService {get; protected set;}               
+        public NotebookService bookService { get; protected set; }
+        public UserService userService { get; protected set; }
+
+        private User _user;
+        virtual public User user
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
+            }
+        }
     }
 }

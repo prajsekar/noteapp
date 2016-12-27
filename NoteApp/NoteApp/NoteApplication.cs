@@ -6,14 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NoteMVP.Presenter;
 
 namespace NoteApp.Application
 {
     public class NoteApplication
     {
-        public static void bootstrapWinClient()
+        public static void bootstrapWinClient(bool mock = false)
         {
-            NoteAppService.RepositoryKey = "localDB";
+            if (mock)
+            {
+                NoteAppPresenter.PresenterTypeKey = "noSync";
+                NoteAppService.RepositoryKey = "remoteDB";
+            }
+            else
+            {
+                NoteAppService.RepositoryKey = "localDB";    
+            }
+            
             //Register local data base
             LocalDbBoostrap.registerDataStore();
             DataStoreFactory.Instance.Key = "localDB";

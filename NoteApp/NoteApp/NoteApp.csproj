@@ -55,6 +55,10 @@
       <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
       <Name>NoteAppCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NoteMVC\NoteMVP.csproj">
+      <Project>{2b389b33-bae1-49a6-9f39-63902895d3c9}</Project>
+      <Name>NoteMVP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

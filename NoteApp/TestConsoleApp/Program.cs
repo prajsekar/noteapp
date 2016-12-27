@@ -9,17 +9,27 @@ using System.Threading.Tasks;
 using NoteApp.Application;
 using NoteApp.Sync;
 
-namespace NoteApp
+namespace TestConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
             NoteApplication.bootstrapWinClient();
-            AppDomain.CurrentDomain.SetData("TestDir", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
-            NoteAppService noteService = new NoteAppService();
-            User dbUser = noteService.userService.validate(new User() { mail = "raj", name = "rajasekarnew" });
-            Console.WriteLine("Db User read.. {0}", dbUser.Id);
+            
+            //Test SyncInfo repo
+            //TestSyncInfoRepo.TestRecordValidation();
+
+            //Test DataWatcher
+            TestDataWatcher.testDataWatcher();
+
+            //Test Model
+            //TestLocalDbModel.TestModifiedData();
+
+            //AppDomain.CurrentDomain.SetData("TestDir", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
+            //NoteAppService noteService = new NoteAppService();
+            //User dbUser = noteService.userService.validate(new User() { mail = "raj", name = "rajasekarnew" });
+            //Console.WriteLine("Db User read.. {0}", dbUser.Id);
 
             //var result = new DataWatcher(noteService, dbUser).getModified(DateTime.Parse(@"12/22/2016 12:14:10 AM").Ticks);
             

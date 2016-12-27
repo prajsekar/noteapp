@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace NoteMVP.Presenter
 {
@@ -19,7 +19,7 @@ namespace NoteMVP.Presenter
 
         private void onUserLogin(object sender, EventArgs e)
         {
-            MessageBox.Show("Somethinsg", "something");
+           Console.WriteLine("Somethinsg", "something");
         }
     }
 }

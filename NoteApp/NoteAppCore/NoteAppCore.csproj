@@ -61,6 +61,7 @@
     <Compile Include="Model\Service\NotebookService.cs" />
     <Compile Include="Model\Service\NoteService.cs" />
     <Compile Include="Model\Service\UserService.cs" />
+    <Compile Include="Model\SyncInfoRepo.cs" />
     <Compile Include="persistence\DatastoreFactory.cs" />
     <Compile Include="persistence\IDataStoreFactory.cs" />
     <Compile Include="persistence\IRepository.cs" />
