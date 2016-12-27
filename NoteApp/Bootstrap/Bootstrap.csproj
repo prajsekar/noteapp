@@ -50,10 +50,6 @@
       <Project>{fb797622-5288-44fa-a002-ac2fb39b51a2}</Project>
       <Name>Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CloudStore\CloudStore.csproj">
-      <Project>{15d5539f-84c0-4e77-8020-6c49c31e9637}</Project>
-      <Name>CloudStore</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NoteAppCore\NoteAppCore.csproj">
       <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
       <Name>NoteAppCore</Name>

@@ -176,15 +176,15 @@ namespace NoteAppGUI.View
             removeCreateBookPanel();
             var book = new Notebook() { Id = -1, name = name, created = ticks, updated = ticks };
             if (addBookToPanel(book))
-            {
+            {               
+                if (this.onBookCreated != null)
+                {
+                    this.onBookCreated(this, book);
+                }
                 if (notebookStackPanel.Controls.Count == 1)
                 {
                     setSelectedBook(this, book);
                     revertZeroBook();
-                }
-                if (this.onBookCreated != null)
-                {
-                    this.onBookCreated(this, book);
                 }
             }
         }
@@ -277,7 +277,7 @@ namespace NoteAppGUI.View
             }
             else
             {
-                notebookViewControl1.activeBook = bookControlMap[bookControlMap.Keys.ToArray()[0]].activeBook;
+                setSelectedBook(this, bookControlMap[bookControlMap.Keys.ToArray()[0]].activeBook);
             }
             if (this.onBookDeleted != null)
             {
