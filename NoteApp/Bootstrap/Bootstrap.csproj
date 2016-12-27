@@ -46,9 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cache\Cache.csproj">
+    <ProjectReference Include="..\Database\Database.csproj">
       <Project>{fb797622-5288-44fa-a002-ac2fb39b51a2}</Project>
-      <Name>Cache</Name>
+      <Name>Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\CloudStore\CloudStore.csproj">
       <Project>{15d5539f-84c0-4e77-8020-6c49c31e9637}</Project>
@@ -58,7 +58,7 @@
       <Project>{5caad627-0325-476e-8df4-7f9172d2499b}</Project>
       <Name>NoteAppCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NoteMVC\NoteMVP.csproj">
+    <ProjectReference Include="..\NoteMVP\NoteMVP.csproj">
       <Project>{2b389b33-bae1-49a6-9f39-63902895d3c9}</Project>
       <Name>NoteMVP</Name>
     </ProjectReference>

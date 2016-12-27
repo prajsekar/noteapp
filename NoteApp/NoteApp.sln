@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache", "Cache\Cache.csproj", "{FB797622-5288-44FA-A002-AC2FB39B51A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{FB797622-5288-44FA-A002-AC2FB39B51A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNoteApp", "TestNoteApp\TestNoteApp.csproj", "{438E3D90-DFDC-4DDC-B351-5A51D2DC8396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMVP", "NoteMVC\NoteMVP.csproj", "{2B389B33-BAE1-49A6-9F39-63902895D3C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMVP", "NoteMVP\NoteMVP.csproj", "{2B389B33-BAE1-49A6-9F39-63902895D3C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppGUI", "NoteAppGUI\NoteAppGUI.csproj", "{A2CCA664-5410-45C2-BE4C-EF05B2C18369}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sync", "Sync\Sync.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppCore", "NoteAppCore\NoteAppCore.csproj", "{5CAAD627-0325-476E-8DF4-7F9172D2499B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap", "NoteApp\Bootstrap.csproj", "{08BD69FD-C36C-479E-A1BD-BB5AC0D30B1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap", "Bootstrap\Bootstrap.csproj", "{08BD69FD-C36C-479E-A1BD-BB5AC0D30B1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{D6384B42-A776-4455-8DD3-46A9895C891B}"
 EndProject
