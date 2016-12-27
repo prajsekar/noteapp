@@ -13,7 +13,7 @@ namespace TestConsoleApp
     {
         public static void testDataWatcher()
         {
-            DataWatcher watcher = new DataWatcher(new NoteAppService(), new User() { Id = 1, mail = "raj", name = "John Smith" }, 50000);
+            DataWatcher watcher = new DataWatcher(new NoteAppService(), new User() { Id = 1, mail = "raj", name = "John Smith" }, 10000);
             watcher.Start();
             watcher.DataAvailable += watcher_DataAvailable;
             watcher.SyncFired += watcher_SyncFired;

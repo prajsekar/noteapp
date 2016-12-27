@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>563805b6-ace5-4e2b-a903-fd864af9001b</ProjectGuid>
+    <OutputType>msi</OutputType>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>NoteAppInstaller.aip</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <IsWindowsApplication>True</IsWindowsApplication>
+    <AssemblyName>NoteAppInstaller</AssemblyName>
+    <Name>NoteAppInstaller</Name>
+    <RootNamespace>NoteAppInstaller</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'All' ">
+    <DebugSymbols>false</DebugSymbols>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="NoteAppInstaller.aip">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NoteAppGUI\NoteAppGUI.csproj">
+      <Name>NoteAppGUI</Name>
+      <Project>{a2cca664-5410-45c2-be4c-ef05b2c18369}</Project>
+      <Private>True</Private>
+      <OutputsToImport>References;PrimaryOutput</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\TestConsoleApp\TestConsoleApp.csproj">
+      <Name>TestConsoleApp</Name>
+      <Project>{d6384b42-a776-4455-8dd3-46a9895c891b}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Caphyon\Advanced Installer\AdvInstExtTasks.Targets" />
+</Project>

@@ -27,8 +27,8 @@ namespace Cache.EntityFramework
         {
             if (String.IsNullOrEmpty(connectionString))
             {
-                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                this.connectionString = appDataPath + @"\notestore.sdf";
+                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                this.connectionString = appDataPath + @"\notestore.sdf";                
             }
             else
             {

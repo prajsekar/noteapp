@@ -96,8 +96,7 @@ namespace NoteMVP.Presenter
         }
 
         void view_LoadForm(object sender, EventArgs e)
-        {            
-           
+        {           
             model = syncEnabled ? 
                 new SyncService("localDB", new NoteAppService("remoteDB"), null) :
                 new NoteAppService();
@@ -109,15 +108,13 @@ namespace NoteMVP.Presenter
             //Hack to create remote db after default user created
             if (syncEnabled)
             {
-                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 var remotePath = appDataPath + @"\remoteNoteDb.sdf";
                 if (!File.Exists(remotePath))
                 {
                     File.Copy(appDataPath + @"\notestore.sdf", remotePath, false);
                 }      
-            }
-            //Hack to create remote db
-                 
+            }    
         }
     }
 }

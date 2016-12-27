@@ -29,7 +29,7 @@ namespace NoteApp.Application
             DataStoreFactory.Instance.Key = "localDB";
 
             //Register mock remote database
-            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             LocalDbBoostrap.registerDataStore(appDataPath + @"\remoteNoteDb.sdf", "remoteDB");
         }
     }
