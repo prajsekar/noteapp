@@ -5,6 +5,7 @@ using NoteApp.Core.Persistence;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -26,6 +27,7 @@ namespace TestNoteApp.Service
             NoteAppService.RepositoryKey = "localDB";
             TestContext.FakeRepo = fakeRepo;
             TestContext.Service = new NoteAppService();
+            Trace.Write("Created fakes..");
         }
 
         [OneTimeTearDown]

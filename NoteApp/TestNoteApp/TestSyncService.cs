@@ -23,14 +23,14 @@ namespace TestNoteApp.Sync
             var fakeRepoFactory = A.Fake<IDataStoreFactory>();
             A.CallTo(() => fakeRepoFactory.getRepository())
                                          .Returns(fakeRepo);
-            DataStoreFactory.Instance.register("localDB", fakeRepoFactory);            
-            NoteAppService.RepositoryKey = "localDB";
+            DataStoreFactory.Instance.register("_localDB", fakeRepoFactory);            
+            NoteAppService.RepositoryKey = "_localDB";
             var fakeRemoteService = A.Fake<INoteAppService>();
             
             TestContext.FakeRemoteService = fakeRemoteService;
             TestContext.FakeRepo = fakeRepo;
             
-            TestContext.Service = new SyncService("localDB", fakeRemoteService, new User() { Id = 2 });
+            TestContext.Service = new SyncService("_localDB", fakeRemoteService, new User() { Id = 2 });
         }
 
         [OneTimeTearDown]
