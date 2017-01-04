@@ -50,7 +50,7 @@ namespace NoteApp.Core.Model.Service
 
         public virtual bool updateModified(Note note)
         {
-            return false;
+            return true;
         }
     }
 }
