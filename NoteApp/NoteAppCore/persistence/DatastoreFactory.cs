@@ -23,11 +23,13 @@ namespace NoteApp.Core.Persistence
                 {
                     factoryMap.Add(key, factory);
                 }
+                Trace.Write("Added factory to the map with key : " + key);
             }
             catch (ArgumentException)
             {
                 factoryMap.Remove(key);
                 factoryMap.Add(key, factory);
+                Trace.Write("Modified factory with key : " + key);
             }
         }
 
