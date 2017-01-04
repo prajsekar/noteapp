@@ -51,7 +51,7 @@ namespace NoteApp.Core.Model.Service
 
         public virtual bool updateModified(Notebook book)
         {
-            return false;
+            return true;
         }
 
         public void setRemoteModified(Notebook book)

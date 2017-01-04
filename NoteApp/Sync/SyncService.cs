@@ -14,7 +14,7 @@ namespace NoteApp.Sync
     {
         private DataWatcher watcher;
         private INoteAppService remoteModel;
-        private SyncMode mode;
+        internal SyncMode mode;
 
         public SyncService(String repoKey, INoteAppService remoteModel,  User user, SyncMode mode)
             :base(repoKey)

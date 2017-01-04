@@ -30,7 +30,7 @@ namespace NoteApp.Sync
 
         public DataWatcher(INoteAppService service, User user)
         {
-            init(service, user, 30000);            
+            init(service, user, 5000);            
         }
 
         public DataWatcher(INoteAppService service, User user, double interval)

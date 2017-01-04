@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -427,9 +428,10 @@ namespace NoteAppGUI.View
         {
             foreach (var book in books)
             {
+                Trace.WriteLine("Book modified in UI: " + book.source.name);
                 if (book.changeType == ModifiedBook.ChangeType.Create)
                 {
-                    addBookToPanel(book.source);
+                    addBookToPanel(book.source, true);
                     //Dont do anything here
                 }
                 else

@@ -17,7 +17,7 @@ namespace NoteApp.Sync
         public SyncNoteService(String key, INoteAppService service, INoteAppService remoteModel)
             : base(key, service)
         {
-            this.service = service;
+            this.service = service;            
             this.remoteModel = remoteModel;
         }
 
@@ -69,7 +69,7 @@ namespace NoteApp.Sync
         }
 
         public override bool updateModified(Note note)
-        {
+        {           
             Trace.Write(String.Format("UpdateModified : {0}, Id: {1}, created : {2}, updated : {3}", note.title, note.Id, note.created, note.updated));
             var result = false;
             var dbNote = get(note.Id);
