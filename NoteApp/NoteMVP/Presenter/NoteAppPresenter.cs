@@ -167,10 +167,6 @@ namespace NoteMVP.Presenter
                 syncService.Start();
                 view.user = user;
             }
-            else
-            {
-                view.setMode(true);
-            }
         }
     }
 }

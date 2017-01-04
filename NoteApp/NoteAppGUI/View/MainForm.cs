@@ -432,7 +432,11 @@ namespace NoteAppGUI.View
                 if (book.changeType == ModifiedBook.ChangeType.Create)
                 {
                     addBookToPanel(book.source, true);
-                    //Dont do anything here
+                    if (notebookStackPanel.Controls.Count == 1)
+                    {
+                        setSelectedBook(this, book.source);
+                        revertZeroBook();
+                    }
                 }
                 else
                 {
