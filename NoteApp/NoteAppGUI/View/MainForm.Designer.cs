@@ -49,7 +49,7 @@
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.userNameLbl = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.appTitleLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.searchTxtBox = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -301,16 +301,16 @@
             this.userNameLbl.TabIndex = 6;
             this.userNameLbl.Text = "John Smith";
             // 
-            // label5
+            // appTitleLbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 6);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 57);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Note App";
+            this.appTitleLbl.AutoSize = true;
+            this.appTitleLbl.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appTitleLbl.ForeColor = System.Drawing.Color.White;
+            this.appTitleLbl.Location = new System.Drawing.Point(3, 6);
+            this.appTitleLbl.Name = "appTitleLbl";
+            this.appTitleLbl.Size = new System.Drawing.Size(206, 57);
+            this.appTitleLbl.TabIndex = 3;
+            this.appTitleLbl.Text = "Note App";
             // 
             // panel1
             // 
@@ -318,7 +318,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel1.Controls.Add(this.userNameLbl);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.appTitleLbl);
             this.panel1.Location = new System.Drawing.Point(0, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(530, 96);
@@ -474,7 +474,7 @@
         private System.Windows.Forms.Label syncStatusLbl;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label userNameLbl;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label appTitleLbl;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox searchTxtBox;
         private System.Windows.Forms.Panel panel5;

@@ -13,16 +13,21 @@ namespace NoteApp.Sync
     {
         private DataWatcher watcher;
         private INoteAppService remoteModel;
-        
-        public SyncService(String repoKey, INoteAppService remoteModel,  User user)
+        private SyncMode mode;
+
+        public SyncService(String repoKey, INoteAppService remoteModel,  User user, SyncMode mode)
             :base(repoKey)
         {
             watcher = new DataWatcher(this, user);
             this.user = user;
+            this.mode = mode;
             watcher.DataAvailable += (sender, args) => onWatcherEvent(sender, args);
             this.remoteModel = remoteModel;
-            this.bookService = new SyncBookService(repoKey, this, remoteModel);
-            this.noteService = new SyncNoteService(repoKey, this, remoteModel);
+            if (mode == SyncMode.TwoWay)
+            {
+                this.bookService = new SyncBookService(repoKey, this, remoteModel);
+                this.noteService = new SyncNoteService(repoKey, this, remoteModel);
+            }
         }
         
         private User _user;
@@ -32,10 +37,10 @@ namespace NoteApp.Sync
                 return _user;
             }
             set {
-                if (user != null)
+                if (value != null)
                 {
                     _user = value;
-                    watcher.setUser(user);
+                    watcher.setUser(value);
                 }
             }
         }
@@ -44,6 +49,12 @@ namespace NoteApp.Sync
         {
             Online,
             Offline
+        }
+
+        public enum SyncMode
+        {
+            OneWay,
+            TwoWay
         }
 
         public void setAppMode(AppMode mode)

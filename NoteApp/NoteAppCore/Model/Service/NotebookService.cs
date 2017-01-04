@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace NoteApp.Core.Model.Service
 {
@@ -26,10 +27,11 @@ namespace NoteApp.Core.Model.Service
             }    
         }
 
-        public List<Notebook> getModified(long time, int userId)
-        {
+        public virtual List<Notebook> getModified(long time, int userId)
+        {            
             using (var ctx = DataStoreFactory.Instance.getRepository(repoKey))
             {
+                Trace.Write("Get modified : " + repoKey + "Time " + time);
                 var query = ctx.getDataSet<Notebook>().Where<Notebook>(n => (n.updated > time) && (n.UserId == userId));
                 return query.ToList<Notebook>().Select<Notebook, Notebook>((n) => (Notebook)n.Clone()).ToList<Notebook>();
             }
@@ -45,6 +47,11 @@ namespace NoteApp.Core.Model.Service
 
             }
             return result;
+        }
+
+        public virtual bool updateModified(Notebook book)
+        {
+            return false;
         }
 
         public void setRemoteModified(Notebook book)

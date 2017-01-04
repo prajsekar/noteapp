@@ -7,6 +7,23 @@ using System.Threading.Tasks;
 
 namespace NoteMVP.View
 {
+    public class ModifiedBook
+    {
+        public ModifiedBook()
+        {
+            changes = new List<Note>();
+        }
+        public enum ChangeType
+        {
+            Create,
+            Update
+        }
+
+        public List<Note> changes { get;  set; }
+        public Notebook source { get;  set; }
+        public ChangeType changeType { get;  set; }
+    }
+
     public interface MainView
     {
         string userName { get; set; }
@@ -19,6 +36,7 @@ namespace NoteMVP.View
         void setSyncStart();
         void setSearchEnd();
         void setNoteBook(Notebook book);
+        void setMode(bool isRemote);
         event EventHandler<Notebook> onBookCreated;
         event EventHandler<Notebook> onBookDeleted;        
         event EventHandler<Note> onNoteDeleted;
@@ -27,5 +45,6 @@ namespace NoteMVP.View
         event EventHandler<String> onSearch;
         event EventHandler<EventArgs> LoadForm;
         event EventHandler<Notebook> onBookSelected;
+        void setModified(List<ModifiedBook> books);
     }
 }

@@ -140,5 +140,16 @@ namespace TestNoteApp
         public event EventHandler<string> onSearch;
         public event EventHandler<EventArgs> LoadForm;
         public event EventHandler<Notebook> onBookSelected;
+
+
+        public void setMode(bool isRemote)
+        {  
+        }
+
+
+        public void setModified(List<ModifiedBook> books)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

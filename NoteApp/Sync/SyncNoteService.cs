@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NoteApp.Core.Model.Entity;
+using System.Diagnostics;
 
 namespace NoteApp.Sync
 {
@@ -59,6 +60,42 @@ namespace NoteApp.Sync
             base.delete(note.Id);
             PrimaryKeyTranslator.translate(note);
             remoteModel.noteService.delete(note.Id);            
+        }
+
+        public override List<Note> getModified(long time, int userId)
+        {
+            Trace.Write("User id : " + userId);
+            return remoteModel.noteService.getModified(time, userId);
+        }
+
+        public override bool updateModified(Note note)
+        {
+            Trace.Write(String.Format("UpdateModified : {0}, Id: {1}, created : {2}, updated : {3}", note.title, note.Id, note.created, note.updated));
+            var result = false;
+            if (note.Id == 0 && (note.created == note.updated))
+            {
+                Trace.Write("Adding new record after sync..");
+                note.Notebook = null;
+                base.add(note);
+                Trace.Write("UpdateModified : New Note " + note.title + "Synced to local db");
+                result = true;
+            }
+            else
+            {
+                var dbNote = base.get(note.Id);
+                if (dbNote.updated != note.updated)
+                {
+                    Trace.Write("Updating remote modified note : " + note.title);
+                    note.Notebook = null;
+                    base.update(note);
+                    result = true;
+                }
+                else
+                {
+                    Trace.Write("Ignoring for sync note : " + note.title);
+                }
+            }
+            return result;
         }
     }
 }

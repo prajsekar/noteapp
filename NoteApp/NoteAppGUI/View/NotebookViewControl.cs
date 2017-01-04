@@ -46,22 +46,29 @@ namespace NoteApp.View
             }
             set
             {
-                if (value == null)
-                {
-                    return;
-                }
-                if (_currentNote != null && _currentNote.name == value.name)
-                {
-                    return;
-                }
-                deleteBookBtn.Show();
-                _currentNote = value;
-                var notebook = value;
-                this.notebookTitleLbl.Text = notebook.name;
-                this.noteCreateTitleLbl.Text = new DateTime(notebook.created).ToString();
-                noteEntryMap.Clear();
-                setNotes(value.Notes);
+                setSelectedBook(value);
             }
+        }
+
+        public void setSelectedBook(Notebook value, bool force = false)
+        {
+            if (value == null)
+            {
+                return;
+            }
+            
+            if (!force && _currentNote != null && _currentNote.name == value.name)
+            {
+                return;
+            }
+
+            deleteBookBtn.Show();
+            _currentNote = value;
+            var notebook = value;
+            this.notebookTitleLbl.Text = notebook.name;
+            this.noteCreateTitleLbl.Text = new DateTime(notebook.created).ToString();
+            noteEntryMap.Clear();
+            setNotes(value.Notes);
         }
 
 

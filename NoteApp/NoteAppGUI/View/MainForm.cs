@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace NoteAppGUI.View
 {
     public partial class MainForm : Form, MainView, NoteObserver
@@ -126,6 +125,19 @@ namespace NoteAppGUI.View
 
         public void setNotebooks(List<Notebook> books)
         {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() => this._setNotebooks(books)));
+                return;
+            }
+            else
+            {
+                _setNotebooks(books);
+            }
+        }
+
+        public void _setNotebooks(List<Notebook> books)
+        {
             if (books != null && books.Count > 0)
             {
                 clearPanel(notebookStackPanel);
@@ -195,8 +207,10 @@ namespace NoteAppGUI.View
            //TODO remove this method
         }
 
+        private long currentBook;
         public void setSelectedBook(object sender, Notebook notebook)
         {
+            currentBook = notebook.created;
             if (this.onBookSelected != null)
             {
                 this.onBookSelected(sender, notebook);
@@ -365,6 +379,51 @@ namespace NoteAppGUI.View
             notebookViewControl1.activeBook = book;
         }
 
+        
+
         public event EventHandler<Notebook> onBookSelected;
+
+
+        public void setMode(bool isRemote)
+        {
+            if (isRemote)
+            {
+                this.panel1.BackColor = System.Drawing.Color.LightSeaGreen;
+                appTitleLbl.Text = appTitleLbl.Text + " - Remote";
+            }
+            
+        }
+
+
+     
+        public void setModified(List<ModifiedBook> books)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() => this._setModified(books)));
+                return;
+            }
+            else
+            {
+                _setModified(books);
+            }
+        }
+
+        private void _setModified(List<ModifiedBook> books)
+        {
+            foreach (var book in books)
+            {
+                if (book.changeType == ModifiedBook.ChangeType.Create)
+                {
+                    addBookToPanel(book.source);
+                    //Dont do anything here
+                }
+                else
+                {
+                    addNoteBtn.Show();
+                    notebookViewControl1.setSelectedBook(book.source, true);                    
+                }                
+            }
+        }
     }
 }

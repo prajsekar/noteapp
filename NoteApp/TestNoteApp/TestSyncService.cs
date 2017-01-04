@@ -30,7 +30,7 @@ namespace TestNoteApp.Sync
             TestContext.FakeRemoteService = fakeRemoteService;
             TestContext.FakeRepo = fakeRepo;
             
-            TestContext.Service = new SyncService("_localDB", fakeRemoteService, new User() { Id = 2 });
+            TestContext.Service = new SyncService("_localDB", fakeRemoteService, new User() { Id = 2 }, SyncService.SyncMode.TwoWay);
         }
 
         [OneTimeTearDown]

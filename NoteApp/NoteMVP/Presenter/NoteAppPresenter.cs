@@ -4,6 +4,7 @@ using NoteApp.Sync;
 using NoteMVP.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -95,11 +96,57 @@ namespace NoteMVP.Presenter
             model.bookService.add(e);            
         }
 
+        void onRemoteModified(object sender, RemoteRecords e)
+        {
+            Trace.Write("Data modified ");
+            Trace.Write("Sync completed...");
+            Trace.WriteLine("Books");
+
+            Dictionary<long, ModifiedBook> modified = new Dictionary<long, ModifiedBook>();
+            bool synced = false;
+            foreach (var book in e.books)
+            {
+                if (model.bookService.updateModified(book) == true)
+                {
+                    synced = true;
+                    ModifiedBook modBook = null;
+                    if(!modified.TryGetValue(book.created,out modBook)) {
+                        modified.Add(book.created, new ModifiedBook() { changeType = ModifiedBook.ChangeType.Create, source = book});
+                    }
+                    Trace.WriteLine("Synced Book name : " + book.name);                
+                }
+                
+            }
+
+            foreach (var note in e.notes)
+            {
+                if (model.noteService.updateModified(note) == true)
+                {
+                    ModifiedBook modBook;                    
+                    var dbBook = model.bookService.get(note.NotebookId);
+
+                    if(!modified.TryGetValue(dbBook.created, out modBook)) {
+                        modBook = new ModifiedBook() { changeType = ModifiedBook.ChangeType.Update, source = dbBook};
+                        modified.Add(dbBook.created, modBook);
+                    }
+                    modBook.changes.Add(note);                    
+                    Trace.WriteLine("Synced Note : " + note.title);
+                    synced = true;
+                }
+            }
+
+            if (synced)
+            {                
+                view.setModified(modified.Values.ToList<ModifiedBook>());
+            }
+        }
+
         void view_LoadForm(object sender, EventArgs e)
-        {           
-            model = syncEnabled ? 
-                new SyncService("localDB", new NoteAppService("remoteDB"), null) :
-                new NoteAppService();
+        {
+
+            model = syncEnabled ?
+                new SyncService("localDB", new NoteAppService("remoteDB"), null, SyncService.SyncMode.TwoWay) :
+                new SyncService("remoteDB", new NoteAppService("remoteDB"), null, SyncService.SyncMode.OneWay);
 
             user = model.userService.validate(new User { name = "John Smith", mail = "jsmith@gmail.com" });
             view.setNotebooks(model.bookService.getAll(user));
@@ -113,8 +160,18 @@ namespace NoteMVP.Presenter
                 if (!File.Exists(remotePath))
                 {
                     File.Copy(appDataPath + @"\notestore.sdf", remotePath, false);
-                }      
-            }    
+                }
+
+                var syncService = (SyncService)model;
+                syncService.user = user;
+                syncService.BooksUpdated += onRemoteModified;
+                Trace.Write("Starting data watcher thread...");
+                syncService.Start();
+            }
+            else
+            {
+                view.setMode(true);
+            }
         }
     }
 }

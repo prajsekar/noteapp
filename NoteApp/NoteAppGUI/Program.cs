@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteApp.Application;
+using System.Diagnostics;
 namespace NoteAppGUI
 {
     static class Program
@@ -16,7 +17,7 @@ namespace NoteAppGUI
         static void Main(String[] args)
         {
             //Bootstrap recipe for windows client
-
+            Debug.Write("App started..");
             NoteApplication.bootstrapWinClient(args.Length > 0 && args[0] == "remote");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

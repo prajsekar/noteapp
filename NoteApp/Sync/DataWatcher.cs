@@ -2,6 +2,7 @@
 using NoteApp.Core.Model.Service;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace NoteApp.Sync
 
         public DataWatcher(INoteAppService service, User user)
         {
-            init(service, user, 5000);
+            init(service, user, 30000);            
         }
 
         public DataWatcher(INoteAppService service, User user, double interval)
@@ -46,13 +47,20 @@ namespace NoteApp.Sync
             if (user != null)
             {
                 userId = user.Id;
+                Trace.Write("DW: user set : " + user.Id);
+            }
+            else
+            {
+                Trace.Write("User not defined");
             }
         }
 
         public void setUser(User user)
         {
+            Trace.Write("DW User set : " + user);
             if (user != null)
             {
+                Trace.Write("DW User set : " + user.Id);
                 userId = user.Id;
             }
         }
@@ -60,18 +68,20 @@ namespace NoteApp.Sync
         private void elapsedHandler(object sender, ElapsedEventArgs args)
         {
             var ticks = syncStartTime.Ticks;
+            Trace.Write("time elapseed for : " + syncStartTime);
             //Set next sync time
-            syncStartTime = DateTime.Now;            
+            syncStartTime = DateTime.Now;
+            Trace.Write("Setting next sync time to  : " + syncStartTime);
             if (this.SyncFired != null)
             {
                 this.SyncFired(this, ticks);
             }
             if (mode == SyncService.AppMode.Offline)
             {
-                Console.WriteLine("offline mode, data watcher returning");
+                Trace.WriteLine("offline mode, data watcher returning");
                 return;
             }
-            Console.WriteLine("Timer elapsed begining to look for remote db changes");
+            Trace.WriteLine("Timer elapsed begining to look for remote db changes");
             var result = getModified(ticks);
             if (this.DataAvailable != null && result != null)
             {
@@ -79,18 +89,18 @@ namespace NoteApp.Sync
             }
             else
             {
-                Console.WriteLine("No new records not notifying UI");
+                Trace.WriteLine("No new records not notifying UI");
             }
 
         }
 
         public RemoteRecords getModified(long ticks)
         {
-            Console.WriteLine("Reading db...");
+            Trace.WriteLine("Reading db...");
             var remoteRecords = new RemoteRecords();
             remoteRecords.books = service.bookService.getModified(ticks, userId).Select<Notebook, Notebook>((b) => PrimaryKeyTranslator.translate(b)).ToList<Notebook>(); ;
             remoteRecords.notes = service.noteService.getModified(ticks, userId).Select<Note, Note>((b) => PrimaryKeyTranslator.translate(b)).ToList<Note>(); ; ;
-            Console.WriteLine("Compleded reading db {0} {1}", remoteRecords.books != null, remoteRecords.notes != null);
+            Trace.WriteLine(String.Format("Compleded reading db {0} {1}", remoteRecords.books != null, remoteRecords.notes != null));
             return remoteRecords;
         }
 
@@ -102,7 +112,7 @@ namespace NoteApp.Sync
         public void Start()
         {
             timer.Start();
-            syncStartTime = DateTime.Now;
+            syncStartTime = DateTime.Now;            
         }
 
         public void Close()
