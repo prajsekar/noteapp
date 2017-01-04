@@ -30,7 +30,7 @@ namespace NoteApp.Sync
             }
             var dbNote = base.add(e);
             var dbNoteClone = (Note)dbNote.Clone();
-            PrimaryKeyTranslator.translate(dbNoteClone);
+           // PrimaryKeyTranslator.translate(dbNoteClone);
             if (dbNoteClone.Notebook != null)
             {
                 dbNoteClone.NotebookId = dbNoteClone.Notebook.Id;
@@ -50,15 +50,15 @@ namespace NoteApp.Sync
             e.Notebook = null;
             base.update(e);
             var newNote = (Note)e.Clone();
-            PrimaryKeyTranslator.translate(newNote);
+           // PrimaryKeyTranslator.translate(newNote);
             remoteModel.noteService.update(e);
         }
 
-        public override void delete(int key)
+        public override void delete(String key)
         {
             var note = base.get(key);
             base.delete(note.Id);
-            PrimaryKeyTranslator.translate(note);
+         //   PrimaryKeyTranslator.translate(note);
             remoteModel.noteService.delete(note.Id);            
         }
 
@@ -72,7 +72,8 @@ namespace NoteApp.Sync
         {
             Trace.Write(String.Format("UpdateModified : {0}, Id: {1}, created : {2}, updated : {3}", note.title, note.Id, note.created, note.updated));
             var result = false;
-            if (note.Id == 0 && (note.created == note.updated))
+            var dbNote = get(note.Id);
+            if (dbNote == null)
             {
                 Trace.Write("Adding new record after sync..");
                 note.Notebook = null;
@@ -82,7 +83,6 @@ namespace NoteApp.Sync
             }
             else
             {
-                var dbNote = base.get(note.Id);
                 if (dbNote.updated != note.updated)
                 {
                     Trace.Write("Updating remote modified note : " + note.title);

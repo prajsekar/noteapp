@@ -23,7 +23,7 @@ namespace NoteApp
                 Console.WriteLine("Created new NoteBook");
                 var book = repository.add<Notebook>(new Notebook() { UserId = 1, name = "Note2" });
                 Console.WriteLine("Created new Note");
-                var noteSaved = repository.add<Note>(new Note() { NotebookId = 1, title = "Title1", content = "Content 2" });
+                var noteSaved = repository.add<Note>(new Note() { NotebookId = "1", title = "Title1", content = "Content 2" });
                 var notes = noteService.noteService.search("Title");
                 foreach (var note in notes)
                 {

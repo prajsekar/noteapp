@@ -23,18 +23,19 @@ namespace NoteMVP.Presenter
         
         public NoteAppPresenter(MainView view)
         {
+            Init(view, null);
+        }
+
+        private void Init(MainView view, INoteAppService service)
+        {
             this.view = view;
+            this.model = service;
             registerHandlers();
-            if (PresenterTypeKey == "noSync")
-            {
-                syncEnabled = false;
-            }
         }
 
         public NoteAppPresenter(MainView view, INoteAppService service)
         {
-            this.view = view;
-            this.model = service;
+            Init(view, service);
         }
 
         private void registerHandlers()
@@ -85,6 +86,11 @@ namespace NoteMVP.Presenter
                 e.NotebookId = e.Notebook.Id;
                 e.Notebook = null;
             }
+
+            if (String.IsNullOrEmpty(e.Id))
+            {
+                e.Id = e.NotebookId + e.created;
+            }
             model.noteService.add(e);
             e.Notebook = model.bookService.get(e.NotebookId); 
         }
@@ -92,6 +98,10 @@ namespace NoteMVP.Presenter
         void view_onBookCreated(object sender, NoteApp.Core.Model.Entity.Notebook e)
         {
             e.UserId = user.Id;
+            if (String.IsNullOrEmpty(e.Id))
+            {
+                e.Id = user.Id + e.name;
+            }
             e.User = null;
             model.bookService.add(e);            
         }
@@ -102,7 +112,7 @@ namespace NoteMVP.Presenter
             Trace.Write("Sync completed...");
             Trace.WriteLine("Books");
 
-            Dictionary<long, ModifiedBook> modified = new Dictionary<long, ModifiedBook>();
+            Dictionary<String, ModifiedBook> modified = new Dictionary<String, ModifiedBook>();
             bool synced = false;
             foreach (var book in e.books)
             {
@@ -110,8 +120,8 @@ namespace NoteMVP.Presenter
                 {
                     synced = true;
                     ModifiedBook modBook = null;
-                    if(!modified.TryGetValue(book.created,out modBook)) {
-                        modified.Add(book.created, new ModifiedBook() { changeType = ModifiedBook.ChangeType.Create, source = book});
+                    if(!modified.TryGetValue(book.Id,out modBook)) {
+                        modified.Add(book.Id, new ModifiedBook() { changeType = ModifiedBook.ChangeType.Create, source = book});
                     }
                     Trace.WriteLine("Synced Book name : " + book.name);                
                 }
@@ -125,9 +135,9 @@ namespace NoteMVP.Presenter
                     ModifiedBook modBook;                    
                     var dbBook = model.bookService.get(note.NotebookId);
 
-                    if(!modified.TryGetValue(dbBook.created, out modBook)) {
+                    if(!modified.TryGetValue(dbBook.Id, out modBook)) {
                         modBook = new ModifiedBook() { changeType = ModifiedBook.ChangeType.Update, source = dbBook};
-                        modified.Add(dbBook.created, modBook);
+                        modified.Add(dbBook.Id, modBook);
                     }
                     modBook.changes.Add(note);                    
                     Trace.WriteLine("Synced Note : " + note.title);
@@ -143,30 +153,19 @@ namespace NoteMVP.Presenter
 
         void view_LoadForm(object sender, EventArgs e)
         {
-
-            model = syncEnabled ?
-                new SyncService("localDB", new NoteAppService("remoteDB"), null, SyncService.SyncMode.TwoWay) :
-                new SyncService("remoteDB", new NoteAppService("remoteDB"), null, SyncService.SyncMode.OneWay);
-
             user = model.userService.validate(new User { name = "John Smith", mail = "jsmith@gmail.com" });
             view.setNotebooks(model.bookService.getAll(user));
             model.user = user;
-
+            model.init();
             //Hack to create remote db after default user created
-            if (syncEnabled)
-            {
-                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                var remotePath = appDataPath + @"\remoteNoteDb.sdf";
-                if (!File.Exists(remotePath))
-                {
-                    File.Copy(appDataPath + @"\notestore.sdf", remotePath, false);
-                }
-
+            if (model is SyncService)
+            {   
                 var syncService = (SyncService)model;
                 syncService.user = user;
                 syncService.BooksUpdated += onRemoteModified;
                 Trace.Write("Starting data watcher thread...");
                 syncService.Start();
+                view.user = user;
             }
             else
             {

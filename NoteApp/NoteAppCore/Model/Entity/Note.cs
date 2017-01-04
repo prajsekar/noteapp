@@ -2,17 +2,19 @@ namespace NoteApp.Core.Model.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Note : IUpdateTimeRequired, ICloneable
     {
-        public int Id { get; set; }        
+        [Key]
+        public String Id { get; set; }        
         public string title { get; set; }
         public long created { get; set; }
         public long updated { get; set; }
         public string content { get; set; }
-        public int NotebookId { get; set; }
-        public int secondaryId { get; set; } 
+        public String NotebookId { get; set; }
+        public String secondaryId { get; set; } 
        
         public virtual Notebook Notebook { get; set; }
 

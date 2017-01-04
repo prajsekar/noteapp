@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace NoteApp.Sync
 {
@@ -82,5 +83,16 @@ namespace NoteApp.Sync
         }
 
         public event EventHandler<RemoteRecords> BooksUpdated;
+
+        public override void init()
+        {
+            base.init();
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var remotePath = appDataPath + @"\remoteNoteDb.sdf";
+            if (!File.Exists(remotePath))
+            {
+                File.Copy(appDataPath + @"\notestore.sdf", remotePath, false);
+            }
+        }
     }    
 }

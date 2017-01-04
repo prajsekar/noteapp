@@ -2,6 +2,7 @@ namespace NoteApp.Core.Model.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Notebook : IUpdateTimeRequired, ICloneable
@@ -11,7 +12,8 @@ namespace NoteApp.Core.Model.Entity
             this.Notes = new HashSet<Note>();
         }
 
-        public int Id { get; set; }
+        [Key]
+        public string Id { get; set; }
         [Index(IsUnique = true)]
         public string name { get; set; }
         public long created { get; set; }

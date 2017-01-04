@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace NoteApp.Core.Model.Service
 {
-    public class NotebookService : DataService<Notebook, int>
+    public class NotebookService : DataService<Notebook, String>
     {
         private INoteAppService service;
         public NotebookService(String key, INoteAppService service)
@@ -56,26 +56,26 @@ namespace NoteApp.Core.Model.Service
 
         public void setRemoteModified(Notebook book)
         {
-            Notebook result = null;
-            if (book.Id == 0)
-            {
-                book.User = null;
-                result = this.add(book);
-                book.Id = result.Id;
-            }
-            else
-            {
-                foreach (var note in book.Notes)
-                {                    
-                    if (note.Id == 0)
-                    {
-                        note.Notebook = null;
-                        note.NotebookId = book.Id;
-                        var dbNote = service.noteService.add(note);
-                        note.Id = dbNote.Id;
-                    }
-                }
-            }
+            //Notebook result = null;
+            //if (book.Id == 0)
+            //{
+            //    book.User = null;
+            //    result = this.add(book);
+            //    book.Id = result.Id;
+            //}
+            //else
+            //{
+            //    foreach (var note in book.Notes)
+            //    {                    
+            //        if (note.Id == 0)
+            //        {
+            //            note.Notebook = null;
+            //            note.NotebookId = book.Id;
+            //            var dbNote = service.noteService.add(note);
+            //            note.Id = dbNote.Id;
+            //        }
+            //    }
+            //}
             
         }
     }

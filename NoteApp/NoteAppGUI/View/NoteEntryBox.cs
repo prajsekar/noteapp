@@ -67,7 +67,7 @@ namespace NoteAppGUI.View
         }
 
 
-        private int id { get; set; }
+        private String id { get; set; }
         private NoteObserver observer { get; set; }
 
         public NoteEntryBox()

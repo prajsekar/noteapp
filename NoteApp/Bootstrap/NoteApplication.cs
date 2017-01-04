@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NoteMVP.Presenter;
+using NoteApp.Sync;
 
 namespace NoteApp.Application
 {
@@ -31,6 +32,19 @@ namespace NoteApp.Application
             //Register mock remote database
             var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             LocalDbBoostrap.registerDataStore(appDataPath + @"\remoteNoteDb.sdf", "remoteDB");
+        }
+
+        public static INoteAppService GetService(bool mock = false)
+        {
+            var result  = mock == false ?
+               new SyncService("localDB", new NoteAppService("remoteDB"), null, SyncService.SyncMode.TwoWay) :
+               new SyncService("remoteDB", new NoteAppService("remoteDB"), null, SyncService.SyncMode.OneWay);
+            return result;
+        }
+
+        public static INoteAppService GetService_onlyLocal(bool mock = false)
+        {
+            return new NoteAppService();            
         }
     }
 }

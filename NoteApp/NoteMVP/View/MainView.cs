@@ -29,6 +29,7 @@ namespace NoteMVP.View
         string userName { get; set; }
         int noteCount { get; set; }
         int bookCount { get; set; }
+        User user { get; set; }
         void setNotebooks(List<Notebook> books);        
         void updateNotebook(Notebook book);
         void setSearchResults(List<Note> notes);

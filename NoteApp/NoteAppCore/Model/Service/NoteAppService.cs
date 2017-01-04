@@ -47,5 +47,11 @@ namespace NoteApp.Core.Model.Service
                 _user = value;
             }
         }
+
+
+        public virtual void init()
+        {
+            
+        }
     }
 }

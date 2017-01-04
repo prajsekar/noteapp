@@ -51,7 +51,7 @@ namespace TestNoteApp.Service
         [Test]
         public void Test_NoteAppService_addBook()
         {
-            TestContext.Service.bookService.add(new Notebook() { name = "test", Id = 1, UserId = 3 });
+            TestContext.Service.bookService.add(new Notebook() { name = "test", Id = "1", UserId = 3 });
             A.CallTo(() => TestContext.FakeRepo.add(A<Notebook>.Ignored))
                 .MustHaveHappened();
         }
@@ -59,7 +59,7 @@ namespace TestNoteApp.Service
         [Test]
         public void Test_NoteAppService_updateBook()
         {
-            TestContext.Service.bookService.update(new Notebook() { name = "test", Id = 1, UserId = 3 });
+            TestContext.Service.bookService.update(new Notebook() { name = "test", Id = "1", UserId = 3 });
             A.CallTo(() => TestContext.FakeRepo.update(A<Notebook>.Ignored, A<Expression<Func<Notebook, object>>[]>.Ignored))                
                 .MustHaveHappened();
         }
@@ -67,16 +67,16 @@ namespace TestNoteApp.Service
         [Test]
         public void Test_NoteAppService_getBook()
         {
-            TestContext.Service.bookService.get(3);
-            A.CallTo(() => TestContext.FakeRepo.get<Notebook, int>(A<int>.Ignored))
+            TestContext.Service.bookService.get("3");
+            A.CallTo(() => TestContext.FakeRepo.get<Notebook, String>(A<String>.Ignored))
                 .MustHaveHappened();
         }
 
         [Test]
         public void Test_NoteAppService_deleteBook()
         {
-            TestContext.Service.bookService.delete(3);
-            A.CallTo(() => TestContext.FakeRepo.delete<Notebook, int>(A<int>.Ignored))
+            TestContext.Service.bookService.delete("3");
+            A.CallTo(() => TestContext.FakeRepo.delete<Notebook, String>(A<String>.Ignored))
                 .MustHaveHappened();
         }
 
@@ -99,16 +99,16 @@ namespace TestNoteApp.Service
         [Test]
         public void Test_NoteAppService_getNote()
         {
-            TestContext.Service.noteService.get(3);
-            A.CallTo(() => TestContext.FakeRepo.get<Note, int>(A<int>.Ignored))
+            TestContext.Service.noteService.get("3");
+            A.CallTo(() => TestContext.FakeRepo.get<Notebook, String>(A<String>.Ignored))
                 .MustHaveHappened();
         }
 
         [Test]
         public void Test_NoteAppService_deleteNote()
         {
-            TestContext.Service.noteService.delete(3);
-            A.CallTo(() => TestContext.FakeRepo.delete<Note, int>(A<int>.Ignored))
+            TestContext.Service.noteService.delete("3");
+            A.CallTo(() => TestContext.FakeRepo.delete<Notebook, String>(A<String>.Ignored))
                 .MustHaveHappened();
         }
     }

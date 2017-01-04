@@ -19,12 +19,12 @@ namespace NoteApp.Sync
 
         private static void SwapKey(Note note)
         {
-            if (note != null)
-            {
-                var temp = note.Id;
-                note.Id = note.secondaryId;
-                note.secondaryId = temp;
-            }
+            //if (note != null)
+            //{
+            //    var temp = note.Id;
+            //    note.Id = note.secondaryId;
+            //    note.secondaryId = temp;
+            //}
         }
 
         public static Notebook translate(Notebook book)
@@ -39,12 +39,12 @@ namespace NoteApp.Sync
 
         private static void SwapKey(Notebook book)
         {
-            if (book != null)
-            {
-                var temp = book.Id;
-                book.Id = book.secondaryId;
-                book.secondaryId = temp;
-            }
+            //if (book != null)
+            //{
+            //    var temp = book.Id;
+            //    book.Id = book.secondaryId;
+            //    book.secondaryId = temp;
+            //}
         }
     }
 }

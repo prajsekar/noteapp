@@ -151,5 +151,18 @@ namespace TestNoteApp
         {
             throw new NotImplementedException();
         }
+
+
+        public User user
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

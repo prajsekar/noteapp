@@ -8,5 +8,6 @@ namespace NoteApp.Core.Model.Service
         NoteService noteService { get; }
         UserService userService { get; }
         User user { get; set; }
+        void init();
     }
 }

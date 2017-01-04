@@ -18,10 +18,11 @@ namespace NoteAppGUI
         {
             //Bootstrap recipe for windows client
             Debug.Write("App started..");
-            NoteApplication.bootstrapWinClient(args.Length > 0 && args[0] == "remote");
+            var remoteMock = args.Length > 0 && args[0] == "remote";
+            NoteApplication.bootstrapWinClient(remoteMock);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new MainForm(remoteMock));
         }
     }
 }

@@ -14,10 +14,22 @@ namespace NoteAppGUI.View
 {
     public partial class MainForm : Form, MainView, NoteObserver
     {
+        public MainForm(bool oneWaySync )
+        {
+            Init(oneWaySync);
+        }
+        
         public MainForm()
         {
+            Init(false);            
+        }
+
+        private void Init(bool oneWaySync)
+        {
             InitializeComponent();
-            presenter = new NoteAppPresenter(this);
+            this.oneWaySync = oneWaySync;
+            var service = NoteApp.Application.NoteApplication.GetService(oneWaySync);
+            presenter = new NoteAppPresenter(this, service);
             bookCreatedBtn.Click += new System.EventHandler(this.onAddBook);
             this.newBookNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckEnterKeyPress);
             removeCreateBookPanel();
@@ -30,8 +42,10 @@ namespace NoteAppGUI.View
             notebookViewControl1.setObserver(this);
             bookCount = 0;
             noteCount = 0;
-            
+            setMode(oneWaySync);
         }
+
+        private bool oneWaySync = false;
         private NoteAppPresenter presenter;
         private Dictionary<String, NotebookControl> bookControlMap = new Dictionary<String, NotebookControl>();
         private void CheckEnterKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -186,7 +200,7 @@ namespace NoteAppGUI.View
             var name = newBookNameTxt.Text;
             newBookNameTxt.Text = "";
             removeCreateBookPanel();
-            var book = new Notebook() { Id = -1, name = name, created = ticks, updated = ticks };
+            var book = new Notebook() { Id = String.Empty, name = name, created = ticks, updated = ticks };
             if (addBookToPanel(book))
             {               
                 if (this.onBookCreated != null)
@@ -423,6 +437,19 @@ namespace NoteAppGUI.View
                     addNoteBtn.Show();
                     notebookViewControl1.setSelectedBook(book.source, true);                    
                 }                
+            }
+        }
+
+        private User _user; 
+        public User user
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
             }
         }
     }

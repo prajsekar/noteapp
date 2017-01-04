@@ -21,11 +21,11 @@ namespace NoteApp.Sync
             this.remoteModel = remoteModel;
         }
 
-        public override void delete(int key)
+        public override void delete(String key)
         {
             var book = base.get(key);
             base.delete(key);
-            PrimaryKeyTranslator.translate(book);
+           // PrimaryKeyTranslator.translate(book);
             remoteModel.bookService.delete(book.Id);            
         }
 
@@ -34,11 +34,11 @@ namespace NoteApp.Sync
             var userId = e.UserId;
             e.User = null;
             base.add(e);
-            PrimaryKeyTranslator.translate(e);
+          //  PrimaryKeyTranslator.translate(e);
             e.UserId = userId;
             e.User = null;
             var result = remoteModel.bookService.add(e);
-            PrimaryKeyTranslator.translate(result);
+          //  PrimaryKeyTranslator.translate(result);
             base.update(result);
             return result;
         }
@@ -47,11 +47,15 @@ namespace NoteApp.Sync
         {
             var result = false;
             Trace.Write("UpdateModified : New Note " + book.Id + "Before sync to local db");
-            if (book.Id == 0 && (book.created == book.updated))
+            var dbBook = get(book.Id);
+            if (dbBook == null)
             {
                 book.User = null;
-                Trace.Write("Book " + book.name + "Synced to local db");
+                var temp = book.Notes;
+                book.Notes = null;
                 base.add(book);
+                book.Notes = temp;
+                Trace.Write("Book " + book.name + "Synced to local db");
                 result = true;
             }
             return result;

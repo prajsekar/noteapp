@@ -58,6 +58,10 @@
       <Project>{2b389b33-bae1-49a6-9f39-63902895d3c9}</Project>
       <Name>NoteMVP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sync\Sync.csproj">
+      <Project>{f9117585-0874-4a8a-a679-e4b425c45f9b}</Project>
+      <Name>Sync</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

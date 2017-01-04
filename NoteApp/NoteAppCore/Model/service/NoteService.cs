@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace NoteApp.Core.Model.Service
 {
-    public class NoteService : DataService<Note, int>
+    public class NoteService : DataService<Note, String>
     {
         private INoteAppService service;
         public NoteService(String key, INoteAppService service)
