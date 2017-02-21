@@ -1,4 +1,6 @@
-This project contains the solution for the note app problem given by Intuit.
+This project contains the solution for the Note application problem given by Intuit.
+The entire code was done within five days hence only part of the problem was implemented, however the design caters to all the requirements mentioned in the problem statement.
+
 Please refer to architecture presentation for more details.
 
 Problems: 
