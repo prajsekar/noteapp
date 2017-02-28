@@ -3,7 +3,7 @@ The entire code was done within five days hence only part of the problem was imp
 
 Please refer to architecture presentation for more details.
 
-Problems: 
+Problem Description: 
 
 Build a desktop note taking application (like Evernote/OneNote, etc.)
 
